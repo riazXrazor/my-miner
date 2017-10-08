@@ -640,3 +640,136 @@ margin-top:50px;
     font-size: 17px;
     font-weight: 700;
 }
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+
+	#header.fixed  .logo img{
+			-moz-transform: scale(0.7);
+		-ms-transform: scale(0.7);
+		-webkit-transform: scale(0.7));
+		transform: scale(0.7);
+		-moz-transition-duration: 0.3s;
+		-o-transition-duration: 0.3s;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		position:absolute;
+		top:-15px;
+	}
+	
+	#header .logo img {
+	border-radius: 50%;
+	width: 100px;
+			-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-moz-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	
+		position:absolute;
+		left:30%;
+	
+	}
+
+}
+ 
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+/* Styles */
+}
+ 
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+/* Styles */
+}
+ 
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+#header.fixed  .logo img{
+			-moz-transform: scale(0.6);
+		-ms-transform: scale(0.6);
+		-webkit-transform: scale(0.6));
+		transform: scale(0.6);
+		-moz-transition-duration: 0.3s;
+		-o-transition-duration: 0.3s;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		
+		position:absolute;
+		top:-30px;
+	}
+}
+ 
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+}
+ 
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+	
+	
+}
+ 
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+/* Styles */
+}
+ 
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+/* Styles */
+}
+ 
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+#header.fixed  .logo img{
+			-moz-transform: scale(0.7);
+		-ms-transform: scale(0.7);
+		-webkit-transform: scale(0.7));
+		transform: scale(0.7);
+		-moz-transition-duration: 0.3s;
+		-o-transition-duration: 0.3s;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		position:absolute;
+		top:-15px;
+	}
+	
+	#header .logo img {
+	border-radius: 50%;
+	width: 100px;
+			-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-moz-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	
+		position:absolute;
+		left:30%;
+	
+	}
+}
