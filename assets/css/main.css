@@ -122,8 +122,34 @@ ul li {
 #header .logo {
 	float: left;
 }
+
+#header .logo img {
+	border-radius: 50%;
+	width: 150px;
+			-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-moz-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+}
 #header.fixed {
 	background-color: rgba(0, 0, 0, 0.25);
+}
+#header.fixed  .logo img{
+		-moz-transform: scale(0.4);
+	-ms-transform: scale(0.4);
+	-webkit-transform: scale(0.4));
+	transform: scale(0.4);
+	-moz-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	
+	position:absolute;
+	top:-39px;
 }
 #header.fixed .header-content {
 	border-bottom: 0;
