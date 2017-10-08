@@ -673,7 +673,7 @@ and (max-device-width : 480px) {
 	transition-duration: 0.3s;
 	
 		position:absolute;
-		left:30%;
+		left:34%;
 	
 	}
 
@@ -769,7 +769,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 	transition-duration: 0.3s;
 	
 		position:absolute;
-		left:30%;
+		left:34%;
 	
 	}
 }
