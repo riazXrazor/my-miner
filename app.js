@@ -4,7 +4,7 @@ const router = express.Router();
 const bodyParser     = require('body-parser');
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey('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');
+sgMail.setApiKey('');
 
 app.set('view engine', 'ejs');
 
