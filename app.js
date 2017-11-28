@@ -6,6 +6,7 @@ const sgMail = require('@sendgrid/mail');
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+
 app.set('view engine', 'ejs');
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
