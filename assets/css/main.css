@@ -104,15 +104,21 @@ ul li {
 /* ------------------------------------------------------------------------------
 	Header
 -------------------------------------------------------------------------------*/
-#header {
-	position: fixed;
+#header,#header-background {
+	position: absolute;
 	width: 100%;
 	z-index: 999;
 }
+
+#header-background{
+   overflow: hidden;
+    position: absolute;
+}
+
 #header .header-content {
 	margin: 0 auto;
 	max-width: 1170px;
-	padding: 60px 0;
+	/*padding: 60px 0;*/
 	width: 100%;
 	-moz-transition: padding 0.3s;
 	-o-transition: padding 0.3s;
@@ -537,6 +543,7 @@ ul li {
 .innerbanner {
 	background-color: #65349c;
 	min-height: 100%;
+    position: relative;
 }
 .innerbanner-text {
 	padding-top: 20%;

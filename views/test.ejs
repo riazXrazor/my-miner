@@ -1,0 +1,51 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Audio Visualizer Example</title>
+<style>
+body {
+    margin: 0;
+}
+
+.vz-wrapper {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: -webkit-gradient(radial, center center, 0, center center, 460, from(#396362), to(#000000));
+    background: -webkit-radial-gradient(circle, #396362, #000000);
+    background: -moz-radial-gradient(circle, #396362, #000000);
+    background: -ms-radial-gradient(circle, #396362, #000000);
+    box-shadow: inset 0 0 160px 0 #000;
+    cursor: pointer;
+}
+
+.vz-wrapper.-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: initial;
+    width: initial;
+    background: transparent;
+    box-shadow: none;
+}
+
+@media screen and (min-width: 420px) {
+    .vz-wrapper {
+        box-shadow: inset 0 0 200px 60px #000;
+    }
+}
+</style>
+</head>
+<body>
+<div class="vz-wrapper">
+<audio id="myAudio" src="1.mp3" data-author="Naruto" data-title="Fighting Dreamers" data-image="https://s-media-cache-ak0.pinimg.com/avatars/riazlaskar_1445712070_280.jpg"></audio>
+<div class="vz-wrapper -canvas">
+<canvas id="myCanvas" width="200" height="200"></canvas>
+</div>
+</div>
+<script src="js/visualizer.js"></script>
+</body>
+</html>

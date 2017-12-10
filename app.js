@@ -54,6 +54,10 @@ router.get("/about",function(req,res){
    res.render("about");
 });
 
+router.get("/test",function(req,res){
+   res.render("test");
+});
+
 app.use("/",router);
 
 app.use("*",function(req,res){
