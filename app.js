@@ -59,6 +59,11 @@ router.get("/test",function(req,res){
    res.render("test");
 });
 
+router.get("/celeberate",function(req,res){
+   res.render("celeberate");
+});
+
+
 app.use("/",router);
 
 app.use("*",function(req,res){
