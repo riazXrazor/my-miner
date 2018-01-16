@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require("express");
+const axios = require('axios');
 const app = express();
 const router = express.Router();
 const bodyParser     = require('body-parser');
@@ -9,18 +10,42 @@ const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+function getCryptoPrices() {
+   return axios.get('https://koinex.in/api/ticker');
+}
+
 bot.on(['/start'], (msg) => {
     return bot.sendMessage(msg.from.id, `Welcome, <b>${msg.from.first_name}!</b>
     I am a telegram bot which can provide you with updated on the popular crypto currency prices in INR and keep you up to date with the latest as crypto currency informations as and when required.
     Here is a list of commands you can run on me.
     /prices - get the latest prices of the popular crypto currencies.
-    /stats@ETH - get ETHEREUM stats
-    /stats@BTC - get BITCOIN stats
-    /stats@LTC - get LITECOIN stats
-    /stats@XRP - get RIPPLE stats
-    /stats@BCH - get BITCOIN CASH stats
+    /stats@ETH - ETHEREUM stats
+    /stats@BTC - BITCOIN stats
+    /stats@LTC - LITECOIN stats
+    /stats@XRP - RIPPLE stats
+    /stats@BCH - BITCOIN CASH stats
+    
+    All data are from the popular crypto currency exchange <a href="https://koinex.in">KOINX</a>
+    
     - Made by <a href="http://riazxrazor.in">Riaz Laskar</a>
     `,{parseMode : 'HTML'});
+});
+
+bot.on(['/prices'], (msg) => {
+    return getCryptoPrices()
+        .then(({ prices }) => {
+            return bot.sendMessage(msg.from.id, `
+            BTC : INR ${prices['BTC']}
+            ETH : INR ${prices['ETH']}
+            XRP : INR ${prices['XRP']}
+            BCH : INR ${prices['BCH']}
+            LTC : INR ${prices['LTC']}
+            `);
+        })
+        .catch(e => {
+            return bot.sendMessage(msg.from.id, "Sorry somthing went wrong !!");
+        })
+
 });
 
 bot.on(['/hello'], (msg) => {
