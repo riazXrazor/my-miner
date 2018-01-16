@@ -5,6 +5,7 @@ const app = express();
 const router = express.Router();
 const bodyParser     = require('body-parser');
 const sgMail = require('@sendgrid/mail');
+const humanizeString = require('humanize-string');
 const TeleBot = require('telebot');
 const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
 
@@ -49,8 +50,21 @@ LTC : INR ${data.prices['LTC']}
 });
 
 bot.on(['/ETH','/BTC','/XRP','/BTH','/LTC'], (msg) => {
-    console.log(msg);
-    return bot.sendMessage(msg.from.id, 'ok');
+
+    let txt = msg.text.replace('/','');
+    return getCryptoPrices()
+        .then(({ data }) => {
+            let stats = data.stats[txt];
+            let response = '';
+            for(stat in stats)
+            {
+                response+= humanizeString(stats) + ' : INR '+stats[stat]+'\n';
+            }
+            return bot.sendMessage(msg.from.id, response);
+        })
+        .catch(e => {
+            return bot.sendMessage(msg.from.id, e.message);
+        })
 });
 
 bot.on(['/hello'], (msg) => {
