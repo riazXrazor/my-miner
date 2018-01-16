@@ -39,12 +39,17 @@ BTC : INR ${data.prices['BTC']}
 ETH : INR ${data.prices['ETH']}
 XRP : INR ${data.prices['XRP']}
 BCH : INR ${data.prices['BCH']}
-LTC : INR ${data.prices['LTC']}`);
+LTC : INR ${data.prices['LTC']}
+`);
     })
         .catch(e => {
             return bot.sendMessage(msg.from.id, e.message);
         })
 
+});
+
+bot.on(['/stats@ETH','/stats@BTC','/stats@XRP','/stats@BTH','/stats@LTC'], (msg) => {
+    return bot.sendMessage(msg.from.id, msg);
 });
 
 bot.on(['/hello'], (msg) => {
