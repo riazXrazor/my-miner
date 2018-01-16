@@ -7,6 +7,7 @@
   "dependencies": {
     "@sendgrid/mail": "^6.1.4",
     "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
     "express": "latest",
     "telebot": "^1.2.3"
