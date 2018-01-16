@@ -17,19 +17,16 @@ function getCryptoPrices() {
 
 bot.on(['/start'], (msg) => {
     return bot.sendMessage(msg.from.id, `Welcome, <b>${msg.from.first_name}!</b>
-    I am a telegram bot which can provide you with updated on the popular crypto currency prices in INR and keep you up to date with the latest as crypto currency informations as and when required.
+    I am a telegram bot which can provide you with updated on the popular crypto currency prices in INR and keep you up to date with the latest crypto currency informations as and when required.
     Here is a list of commands you can run on me.
-    /prices - get the latest prices of the popular crypto currencies.
+    /prices - All currency prices
     /ETH - ETHEREUM stats
     /BTC - BITCOIN stats
     /LTC - LITECOIN stats
     /XRP - RIPPLE stats
     /BCH - BITCOIN CASH stats
-    /MIOTA - IOTA stats
-    /OMG - OmiseGO stats
-    /GNT - Golem stats
     
-    All data are from the popular crypto currency exchange <a href="https://koinex.in">KOINX</a>
+    All data are from the popular crypto currency exchange <a href="https://koinex.in">KOINEX</a>
     
     - Made by <a href="http://riazxrazor.in">Riaz Laskar</a>
     `,{parseMode : 'HTML'});
