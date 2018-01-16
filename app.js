@@ -43,7 +43,7 @@ bot.on(['/prices'], (msg) => {
             `);
         })
         .catch(e => {
-            return bot.sendMessage(msg.from.id, "Sorry somthing went wrong !!");
+            return bot.sendMessage(msg.from.id, e.message);
         })
 
 });
