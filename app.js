@@ -11,8 +11,14 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 bot.on(['/start'], (msg) => {
     return bot.sendMessage(msg.from.id, `Welcome, <b>${msg.from.first_name}!</b>
-    I am a telegram bot which can provide you with updated on the popular crypto currency prices in INR and keep you update to date as
-    and when required.
+    I am a telegram bot which can provide you with updated on the popular crypto currency prices in INR and keep you up to date with the latest as crypto currency informations as and when required.
+    Here is a list of commands you can run on me.
+    /prices - get the latest prices of the popular crypto currencies.
+    /stats@ETH - get ETHEREUM stats
+    /stats@BTC - get BITCOIN stats
+    /stats@LTC - get LITECOIN stats
+    /stats@XRP - get RIPPLE stats
+    /stats@BCH - get BITCOIN CASH stats
     - Made by <a href="http://riazxrazor.in">Riaz Laskar</a>
     `,{parseMode : 'HTML'});
 });
