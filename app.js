@@ -49,7 +49,7 @@ LTC : INR ${data.prices['LTC']}
 
 });
 
-bot.on(['/ETH','/BTC','/XRP','/BTH','/LTC'], (msg) => {
+bot.on(['/ETH','/BTC','/XRP','/BCH','/LTC'], (msg) => {
 
     let txt = msg.text.replace('/','');
     return getCryptoPrices()
