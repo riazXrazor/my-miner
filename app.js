@@ -33,13 +33,13 @@ bot.on(['/start'], (msg) => {
 
 bot.on(['/prices'], (msg) => {
     return getCryptoPrices()
-        .then(({ prices }) => {
+        .then(({ data }) => {
             return bot.sendMessage(msg.from.id, `
-            BTC : INR ${prices['BTC']}
-            ETH : INR ${prices['ETH']}
-            XRP : INR ${prices['XRP']}
-            BCH : INR ${prices['BCH']}
-            LTC : INR ${prices['LTC']}
+            BTC : INR ${data.prices['BTC']}
+            ETH : INR ${data.prices['ETH']}
+            XRP : INR ${data.prices['XRP']}
+            BCH : INR ${data.prices['BCH']}
+            LTC : INR ${data.prices['LTC']}
             `);
         })
         .catch(e => {
