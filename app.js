@@ -3,11 +3,10 @@ const app = express();
 const router = express.Router();
 const bodyParser     = require('body-parser');
 const sgMail = require('@sendgrid/mail');
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
 const TeleBot = require('telebot');
 const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 bot.on(['/start', '/hello'], (msg) => msg.reply.text('Welcome!'));
 
