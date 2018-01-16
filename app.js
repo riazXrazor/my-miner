@@ -15,7 +15,7 @@ function getCryptoPrices() {
    return axios.get('https://koinex.in/api/ticker');
 }
 
-bot.on(['/start'], (msg) => {
+bot.on(['/start','/help'], (msg) => {
     return bot.sendMessage(msg.from.id, `Welcome, <b>${msg.from.first_name}!</b>
     I am a telegram bot which can provide you with updated on the popular crypto currency prices in INR and keep you up to date with the latest crypto currency informations as and when required.
     Here is a list of commands you can run on me.
