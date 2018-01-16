@@ -9,7 +9,13 @@ const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-bot.on(['/start', '/hello'], (msg) => msg.reply.text('Welcome!'));
+bot.on(['/start'], (msg) => {
+    return bot.sendMessage(msg.from.id, `Welcome, ${ msg.from.first_name }!`);
+});
+
+bot.on(['/hello'], (msg) => {
+    return bot.sendMessage(msg.from.id, `Hello, ${ msg.from.first_name }!`);
+});
 
 app.set('view engine', 'ejs');
 
