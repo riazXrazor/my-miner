@@ -58,7 +58,7 @@ bot.on(['/ETH','/BTC','/XRP','/BTH','/LTC'], (msg) => {
             let response = '';
             for(stat in stats)
             {
-                response+= humanizeString(stats) + ' : INR '+stats[stat]+'\n';
+                response+= humanizeString(stat) + ' : INR '+stats[stat]+'\n';
             }
             return bot.sendMessage(msg.from.id, response);
         })
