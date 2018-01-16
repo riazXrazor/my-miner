@@ -4,6 +4,11 @@ const router = express.Router();
 const bodyParser     = require('body-parser');
 const sgMail = require('@sendgrid/mail');
 
+const TeleBot = require('telebot');
+const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
+
+bot.on(['/start', '/hello'], (msg) => msg.reply.text('Welcome!'));
+
 sgMail.setApiKey('');
 
 app.set('view engine', 'ejs');
@@ -71,4 +76,5 @@ app.use("*",function(req,res){
 var port = 8080;
 app.listen(port,function(){
   console.log("Live at Port "+port);
+  bot.start();
 });

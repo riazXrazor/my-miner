@@ -8,7 +8,8 @@
     "@sendgrid/mail": "^6.1.4",
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
-    "express": "latest"
+    "express": "latest",
+    "telebot": "^1.2.3"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
