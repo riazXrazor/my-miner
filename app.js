@@ -19,11 +19,11 @@ bot.on(['/start'], (msg) => {
     I am a telegram bot which can provide you with updated on the popular crypto currency prices in INR and keep you up to date with the latest as crypto currency informations as and when required.
     Here is a list of commands you can run on me.
     /prices - get the latest prices of the popular crypto currencies.
-    /stats@ETH - ETHEREUM stats
-    /stats@BTC - BITCOIN stats
-    /stats@LTC - LITECOIN stats
-    /stats@XRP - RIPPLE stats
-    /stats@BCH - BITCOIN CASH stats
+    /ETH - ETHEREUM stats
+    /BTC - BITCOIN stats
+    /LTC - LITECOIN stats
+    /XRP - RIPPLE stats
+    /BCH - BITCOIN CASH stats
     
     All data are from the popular crypto currency exchange <a href="https://koinex.in">KOINX</a>
     
@@ -48,7 +48,7 @@ LTC : INR ${data.prices['LTC']}
 
 });
 
-bot.on(['/stats@ETH','/stats@BTC','/stats@XRP','/stats@BTH','/stats@LTC'], (msg) => {
+bot.on(['/ETH','/BTC','/XRP','/BTH','/LTC'], (msg) => {
     console.log(msg);
     return bot.sendMessage(msg.from.id, 'ok');
 });
