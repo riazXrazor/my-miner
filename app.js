@@ -25,6 +25,9 @@ bot.on(['/start'], (msg) => {
     /LTC - LITECOIN stats
     /XRP - RIPPLE stats
     /BCH - BITCOIN CASH stats
+    /MIOTA - IOTA stats
+    /OMG - OmiseGO stats
+    /GNT - Golem stats
     
     All data are from the popular crypto currency exchange <a href="https://koinex.in">KOINX</a>
     
@@ -39,9 +42,9 @@ bot.on(['/prices'], (msg) => {
             let response = '';
             for(coin in prices)
             {
-                response+= coin + ' : INR '+prices[coin]+'\n';
+                response+= '<a href="/'+coin+'">'+coin + '</a> : INR '+prices[coin]+'\n';
             }
-            return bot.sendMessage(msg.from.id, response);
+            return bot.sendMessage(msg.from.id, response,{parseMode : 'HTML'});
     })
         .catch(e => {
             return bot.sendMessage(msg.from.id, e.message);
