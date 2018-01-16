@@ -52,7 +52,7 @@ bot.on(['/prices'], (msg) => {
 
 });
 
-bot.on(['/ETH','/BTC','/XRP','/BCH','/LTC'], (msg) => {
+bot.on(['/ETH','/BTC','/XRP','/BCH','/LTC','/GNT','/OMG','/MIOTA'], (msg) => {
 
     let txt = msg.text.replace('/','');
     return getCryptoPrices()
