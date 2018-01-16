@@ -10,7 +10,13 @@ const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 bot.on(['/start'], (msg) => {
-    return bot.sendMessage(msg.from.id, `Welcome, ${ msg.from.first_name }!`);
+    return bot.sendMessage(msg.from.id, `Welcome, ${msg.from.first_name}! \n
+    I am a telegram bot which can provide you with updated on the popular 
+    crypto currency prices in INR and keep you update to date as
+    and when required.
+    \n
+    - Made by http://riazxrazor.in
+    `);
 });
 
 bot.on(['/hello'], (msg) => {
