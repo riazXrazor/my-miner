@@ -49,7 +49,8 @@ LTC : INR ${data.prices['LTC']}
 });
 
 bot.on(['/stats@ETH','/stats@BTC','/stats@XRP','/stats@BTH','/stats@LTC'], (msg) => {
-    return bot.sendMessage(msg.from.id, msg);
+    console.log(msg);
+    return bot.sendMessage(msg.from.id, 'ok');
 });
 
 bot.on(['/hello'], (msg) => {
