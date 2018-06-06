@@ -6,12 +6,13 @@ const router = express.Router();
 const bodyParser     = require('body-parser');
 const sgMail = require('@sendgrid/mail');
 const humanizeString = require('humanize-string');
-const TeleBot = require('telebot');
-const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
+const tailwindo = require('tailwindo');
+// const TeleBot = require('telebot');
+// const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-function getCryptoPrices() {
+/*function getCryptoPrices() {
    return axios.get('https://koinex.in/api/ticker');
 }
 
@@ -69,7 +70,7 @@ bot.on(['/ETH','/BTC','/XRP','/BCH','/LTC','/GNT','/OMG','/MIOTA'], (msg) => {
 
 bot.on(['/hello'], (msg) => {
     return bot.sendMessage(msg.from.id, `Hello, ${ msg.from.first_name }!`);
-});
+});*/
 
 app.set('view engine', 'ejs');
 
@@ -97,6 +98,14 @@ router.get("/help-me",function(req,res){
 
 router.get("/contact",function(req,res){
   res.render("contact",req.query);
+});
+
+router.get("/bootstrap-to-tailwind",function(req,res){
+  res.render("bs2tw");
+});
+router.post("/tailwindo",function(req,res){
+  $input = req.body.html; //BootstrapCSS code
+  res.send(tailwindo($input)) // gets converted code
 });
 
 router.post("/contact",function(req,res){
@@ -136,5 +145,5 @@ app.use("*",function(req,res){
 var port = 8080;
 app.listen(port,function(){
   console.log("Live at Port "+port);
-  bot.start();
+  // bot.start();
 });

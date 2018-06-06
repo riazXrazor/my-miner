@@ -12,9 +12,10 @@
     "ejs": "^2.5.7",
     "express": "latest",
     "humanize-string": "^1.0.1",
+    "tailwindo": "^1.0.5",
     "telebot": "^1.2.3"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.17.5"
   }
 }
