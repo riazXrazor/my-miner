@@ -385,14 +385,13 @@
 <script>
     (function() {
     var code = document.getElementById("output-code");
-    // highlightCode = function() { Prism.highlightElement(code); };
 
     $("#input-code").on('input',function(){
       $.post('tailwindo',{
         html : $(this).val()
       })
       .then(function(res){
-        code.textContent = (res);
+        code.textContent = res;
         Prism.highlightElement(code);
       })
       
@@ -401,5 +400,6 @@
     })();
     
     </script>
+    
 </body>
 </html>
