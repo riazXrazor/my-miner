@@ -1,0 +1,540 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+<link rel="stylesheet" href="css/prism.css">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank You All</title>
+<style>
+body,html{
+			margin:0;
+			padding:0;
+			height:100%;
+			width:100%;
+            overflow:hidden;
+            background:#000;
+		}
+		
+    #thank-you{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+
+   
+    }
+
+    canvas{
+        margin:0;
+        padding:0;
+        outline:none;
+    }
+
+    .author{
+        position:absolute;
+        bottom:0;
+        right:0;
+        font-size:15px;
+        padding:20px;
+        text-align:center;
+       
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+        
+        text-shadow: 2px 2px 3px rgba(120,0,20,.9);
+        font-style:italic;
+        padding:1em;
+        color:#700;
+        color:rgba(120,0,20,.9);
+    }
+    .author a, .author a:active, .author a:hover, .author a:visited{
+        text-decoration:none;
+        color:rgba(120,0,20,.9);
+    }
+    .author .heart{
+        color: #e25555;
+         text-shadow: 2px 2px 3px #e25555;
+        font-size:30px;
+    }
+</style>
+    <div id="thank-you">
+    </div>
+    <div class="author"><a href="http://riazxrazor.in/">Made with <span class="heart">♥</span> by Riaz Laskar</a><div>
+  <script src="js/vis.js"></script>
+  <script>
+  var canvas = document.createElement("canvas"),
+  HEIGHT = canvas.height = window.innerHeight,
+  WIDTH = canvas.width = window.innerWidth,
+  ctx = canvas.getContext("2d");
+  
+  document.body.appendChild(canvas);
+
+
+  
+        // Options
+        const particlesPerExplosion = 30;
+        const particlesMinSpeed     = 3;
+        const particlesMaxSpeed     = 6;
+        const particlesMinSize      = 1;
+        const particlesMaxSize      = 3;
+        const explosions            = [];
+        var initial = true;
+
+
+        // Draw explosion(s)
+        function drawExplosion(ctx) {
+
+        if (explosions.length === 0) {
+            return;
+        }
+
+        for (let i = 0; i < explosions.length; i++) {
+
+            const explosion = explosions[i];
+            const particles = explosion.particles;
+
+            if (particles.length === 0) {
+            explosions.splice(i, 1);
+            return;
+            }
+
+            const particlesAfterRemoval = particles.slice();
+            for (let ii = 0; ii < particles.length; ii++) {
+
+            const particle = particles[ii];
+
+            // Check particle size
+            // If 0, remove
+            if (particle.size <= 0) {
+                particlesAfterRemoval.splice(ii, 1);
+                continue;
+            }
+
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.size, Math.PI * 2, 0, false);
+            ctx.closePath();
+            ctx.fillStyle = 'rgb(' + particle.r + ',' + particle.g + ',' + particle.b + ')';
+            ctx.fill();
+
+            // Update
+            particle.x += particle.xv;
+            particle.y += particle.yv;
+            particle.size -= .1;
+            }
+
+            explosion.particles = particlesAfterRemoval;
+
+        }
+
+        }
+        // Explosion
+        function explosion(particle) {
+
+        this.particles = [];
+
+        for (let i = 0; i < particle.particlesPerExplosion; i++) {
+            this.particles.push(
+            new ExplosionParticle(particle)
+            );
+        }
+
+        }
+        // Particle
+        function ExplosionParticle(particle) {
+        this.x    = particle.x ;
+        this.y    = particle.y;
+        this.xv   = randInt(particle.particlesMinSpeed, particle.particlesMaxSpeed, false);
+        this.yv   = randInt(particle.particlesMinSpeed, particle.particlesMaxSpeed, false);
+        this.size = randInt(particle.particlesMinSize, particle.particlesMaxSize, true);
+        this.g    = '00';
+        }
+
+        // Returns an random integer, positive or negative
+        // between the given value
+        function randInt(min, max, positive) {
+
+        let num;
+        if (positive === false) {
+            num = Math.floor(Math.random() * max) - min;
+            num *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
+        } else {
+            num = Math.floor(Math.random() * max) + min;
+        }
+
+        return num;
+
+        }
+		
+    function randomBetween(min, max) {
+                if (min < 0) {
+                    return min + Math.random() * (Math.abs(min)+max);
+                }else {
+                    return min + Math.random() * max;
+                }
+        }
+
+
+
+
+
+
+
+  function draw() {
+    // create people.
+    // value corresponds with the age of the person
+      
+    var nodes = [ 
+            { id: 0,
+                    label: 'Thank You All',
+                    image: 'https://lh3.googleusercontent.com/9D5YxS8XW6en2_j9tOdh5_J4dUnW7iyfOd5xkTiJevTUtBDYYxbKyX-LBt75lK31A4dn8lHLe9kNAiM14MAXl9YYb42k-8HI=s204-p-k-lf-no',
+                    shape: 'circularImage' },
+        { id: 1,
+            label: 'Subho Cx',
+            image: 'https://lh3.googleusercontent.com/ganRV85r94-hBVO2wbT-2CHkUsVJ2b-zv8VtksB18-hx22pwWMI97L1mT85vUcAPoWNcHC1Xu6dwrVQscOKzolc8UYjLl4br=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 2,
+            label: 'Sayantan Cx',
+            image: 'https://lh3.googleusercontent.com/u0c45fwXyTk3gQH3LW3ebZbITsUxf6DG5GB4ZFiyLOWSNh4OJJthlSWGo2LHs82gT3MWASlZcSwDhYNIBAMeG05KyERi9v_y=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 3,
+            label: 'Rohit Laskar',
+            image: 'https://lh3.googleusercontent.com/c0IY7e3gXwPzid0sR8Chj1fZ-lIjifpDoG8WMPpJ5OdkqvCy-socnYQpLtmEp6bD_pOZKFdwr-4O1vrs7jXSkUI9Zm4OCUBe=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 4,
+            label: 'Sonali De Cx',
+            image: 'https://lh3.googleusercontent.com/8ZXevZsYle3GzOhzQ3hcVXBjTs1sezktHfiaEpg8MaU7fUOX630t_QzRo5y9NuSNHorfpc09-HlOHwgX98BG8NmbJV0TWQWU=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 5,
+            label: 'Tanu',
+            image: 'https://lh3.googleusercontent.com/r0LiwngGQ3mT8rioz3rnEKZmslTahuVQrAwn0mcS-9Lm5RBzgUEa-hFjDkrj0GY5pwScLHuVVNIxCUxrTza56RWzpNtox6_Y=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 6,
+            label: 'Jhampati',
+            image: 'https://lh3.googleusercontent.com/yZ4nsuiD45CeTJnoI3ukdPn3JU6P4iym4dNc9A0WbV9AiqzdIBSjyoaX4tHE6cfIoGXvmu7YidU5SWk9CEj47tsoAqI8Ftha=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 7,
+            label: 'Somsubra Da',
+            image: 'https://lh3.googleusercontent.com/dS1qzDp8CroyRNa9hSlKSCm12LNom9zP560cL85olQhSG7_e_fB2o-JNMi5ze1KECYkmgttvtk-OxCBVdlaTn1Y8Dh3xToo7=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 8,
+            label: 'Joydeep',
+            image: 'https://lh3.googleusercontent.com/lftgciRlpC0WIqJLX5rubfKjAtXR8eSbQ3aXRyPjcYX3TpLWkm86n9WHEqYDAFOSyCI9lbpMGMCzYny-Ls_mOj_2EeO2Rw9k=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 9,
+            label: 'Uttam Da Cx',
+            image: 'https://lh3.googleusercontent.com/PM97w_hHLwNPYx5oATHbwcb7bkUZ8Pa7fFDV0Fr39CHwxv0Ptyy3bSCyNpwvL-3g_rpNqaLjShM9pC2ZhaLX14_Cpnv6HQ8=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 10,
+            label: 'Sukhla',
+            image: 'https://lh3.googleusercontent.com/NRM3huCpNpEJXkP3XBVhbifeuPXKYxLqkY4wEn_8mB9is91gc5LFzseTHP6buOG0cNooeRMBWxevc6YSXPbJXPqu_siyLG9P=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 11,
+            label: 'Bikash Cx',
+            image: 'https://lh3.googleusercontent.com/DDR2hrkHNpl3EuYhGdOMhxuDaBoLf2vaITa7uS06T6Jgz0ydKbWSlxkEKpxeOmJga2m0X7qIBRVMFdX8XUmAIAb7AkY92bC0=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 12,
+            label: 'Atanu Da Cx',
+            image: 'https://lh3.googleusercontent.com/8T8Xgm4RiVpSnjSiTuLnbHl8nSgrti0wFi59MXv0Zm-4wMxA26FEyUWHbBYeLpen64iDqPTgdwX_Y6bxJhoyg9Bjk4k3stRn=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 13,
+            label: 'Rima Chakraborty',
+            image: 'https://lh3.googleusercontent.com/QmL2_EfHzoyEEyC1tz84FCRbMVhVrYywZmX9iE2Eft8jCLSQewWF0gB1sJIWSzQe8llDdxYTMWFUgZ9PLeo3AA-TBf4L0Z23=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 14,
+            label: 'Nilanjan Das Cx',
+            image: 'https://lh3.googleusercontent.com/1KkqOdWHdxPdMwgp5m1ePMJo97daK_QWl8j1RxlhyNNia4DVVohbp3Z84IsymFmYuMtaAFsxmC_3Hp11qdZzpylbEyqKFIJo=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 15,
+            label: 'Nazia Hassan',
+            image: 'https://lh3.googleusercontent.com/gePfT-gtKz73hrWD0bnbvgqhzKPTCztRYJE0b2A-Bq0KNNCoJ68X84OVOoyWLHe_4QNiIijW74EeCBw7SseHJw5xecmOKgLu=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 16,
+            label: 'Amitabh Roy',
+            image: 'https://lh3.googleusercontent.com/9BXHymqgVjCjuKIZjcxP33jdmtpc99m1K2YBChReNDe1LtO2YajopVqd390hfCxhVVs4YiD0WLQ2B70W9LuyhpoO1buZtY44=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 17,
+            label: 'Vishal Cx',
+            image: 'https://lh3.googleusercontent.com/zdplVZGt5--8p4UN2r9fVN4XknrTUXTBrGzpheA9AYgctbIJKTDjSyScxiDDpcdLeYRrre7r9YMobLFGnqXwd07Jast46_mb=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 19,
+            label: 'Ma',
+            image: 'https://lh3.googleusercontent.com/0Q7xI4ok8mfoNG2I5FFgWZIEB5fwOaSFmxyUz0G8ayEpLB9TtYqEhy3D-hunGPXrAX6Jgt4fP1h9m_N9_VGBE9OYWqfBAazF=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 20,
+            label: 'Suvra',
+            image: 'https://lh3.googleusercontent.com/N_o1uS9rWOzdPvu9EHNF9u4SLvF60GTTGhPhcGnEPnMB4GTFYQKicwEXVLMJN8ScE01gGk8nH4X_pDnY8tXHnRHPtAU1N38g=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 21,
+            label: 'Subhasis Bhowmik',
+            image: 'https://lh3.googleusercontent.com/I31JrxzXGHCDPIvioJsKghbgRWXCcf3ht1Avo_9_i4nmr9il6619dD-WVgiet4QztKVmiu6UOmJoxIUBQg1mQRbIQM9UlnY0=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 22,
+            label: 'Subhankar',
+            image: 'https://lh3.googleusercontent.com/asHjQuMw0KLHmVZrA618l3m5aUBFStmWcvuW7DgeebvL5rf73K9n7Q3Ez5JtsmCRwLMx2JVsLA35Hv7mZ5IHdejgIQczakqr=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 23,
+            label: 'Urmi De Cx',
+            image: 'https://lh3.googleusercontent.com/hev8-IuWypxy4grHj6Z_JSK6TRXp7WAX3Xhy76Q5LPu3FVnYSDL6xDYjmCSO7d9LwYgjy73UqNms44zUjXa7p9DwHigrQmA6=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 24,
+            label: 'PinkiE',
+            image: 'https://lh3.googleusercontent.com/U5llBWFURKpE1vB-nKVRXBmhduGu7WR8ZpO1t_yfQR684v3pfgpWA6zzeuyNyzQBlKtxnKrCfRkkURhbWOsQh0LxU1ot1oja=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 25,
+            label: 'Susmita',
+            image: 'https://lh3.googleusercontent.com/OkllrdFRTv6H50osT72dDR9YpIOynjaFCDOzzuGU4p5lawSX8ccoR9eL4J26qUyLoMb3PnKX1a021u5Hrq44-J4dASgEgoMe=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 26,
+            label: 'Mithu Roy Cx',
+            image: 'https://lh3.googleusercontent.com/m-OvDzycCosWxEyFFgloos2Dpf951D6TYUB9cYCSoadcf4JQrftk44BuwMN6bzsmLe7Ry2_oVvw6z6vBZAgtqNcAsxdLQ7LI=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 27,
+            label: 'Atul',
+            image: 'https://lh3.googleusercontent.com/YMzfeziF7vOFTxGGqqsiOn9IV8lHFt25v7v9mp7V0MmZKwK4lMdyVwHxy5dM-Hb6w1msyQnoerseFG2Te8MPhsI9Tcz85Efj=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 28,
+            label: 'Sumanta',
+            image: 'https://lh3.googleusercontent.com/o5LpcXu85HXHmnjbs77bZ1qaYeKQzkiUOtRusynJ3kUeP4ujCY8NkQV7qDWaEeDg8s5izX1lxsAZYwZNZaBCxbh3uNxSlDvV=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 29,
+            label: 'Prolay',
+            image: 'https://lh3.googleusercontent.com/gtH5ypDas34WIChzptyoRV9DimYMcFEnZkP2Qf7PmVcJAxOvMOPpSUUWJzOYdKQX3NmPnSXaedcuVTYl2F2fOwARF503RqzD=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 30,
+            label: 'Bithika',
+            image: 'https://lh3.googleusercontent.com/_TBZfUf3agw9vMxhmmHAd93gq9WBpljZulw6z4C2zkwZcpkK2-fScTSqPXNGYJyXABDYAqRCFQ8xOetTV-GZbbsjFCd0SFyL=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 31,
+            label: 'Koustav ',
+            image: 'https://lh3.googleusercontent.com/ksoungBQO2mCWzG5zS3GKN6fupqG3S-R3mT0JxV7XpYjU5xaBQXiRW_cOEiOYHZmeV68HnU2CsU-o5ujYXnhjfcXai-_yVIP=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 32,
+            label: 'Arjoo',
+            image: 'https://lh3.googleusercontent.com/1qGrLoUddzfONfpxErTimxqY-FPIO8TZVWx0_jGi_Yhgi3rNDq6S8T_9uCj4oTbJ4ILOiNn6hF9qcPLaDdVbASgR9d7ipVRd=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 36,
+            label: 'Tuhina',
+            image: 'https://lh3.googleusercontent.com/nr6r_mc-Jn8W-BZQDrXFwksQqlMjTezgviEnd_EvAxFR9ykMdL_7EUZm8XYXWI78DUKaTxPVR2qgyKO_NrMZuvOxP9ZmBJaR=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 37,
+            label: 'Tarun Gorai',
+            image: 'https://lh3.googleusercontent.com/sb39AzMrndfLgsVQApxVl7DsjEHYh9ICyBL4XGvaYDmQ3cOdj3ameZJFWWr0tLwYmFQMlK-3tp4sa7FjEace8EFJ--SzwGAb=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 38,
+            label: 'Rithika',
+            image: 'https://lh3.googleusercontent.com/HPwEDj-DOHWmG_jDcQ6J3Ik0ilQKo9ExGtCV2q2WjL5Apv5ILXBy_tlXW1jk10Qh6G0JPeSvEHlJroMlCzx1LshGdy9SX0qf=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 40,
+            label: 'Sucharita Ganguly',
+            image: 'https://lh3.googleusercontent.com/Y7UeMohbLjWxzKgbkgIQI8OvPDdRcJ6b0Qi99O6nyZZsBqfOTHxx7wsyOkIqpFDU_Bnm-8d00xpPASbi0XT24rpyiWF4VY9V=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 42,
+            label: 'Ria',
+            image: 'https://lh3.googleusercontent.com/koT0YusM8EQPqkeS2lB_OYn14qp3FvKC88SGj9zYvtwbd8oJPVy3eCA22fD70n5CeGCR00TkhmKCLQeDQFqWHpef47V0XP23=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 44,
+            label: 'Amiyo',
+            image: 'https://lh3.googleusercontent.com/bBnJVSOfaRj_03ZuLmTFitWscx2f5RfRkIA-J1X85giFhRiiT9KllppXDekBPiOpZmdRzSIhCv2nYGAkchgoGDYeaVKpoDFY=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 45,
+            label: 'Sakil',
+            image: 'https://lh3.googleusercontent.com/x8MBTjAwvvywYGvyLfmQyQyLcGSMj7m5CGgvzTVDxYeWhmrWEE3sTqN0uRGaSYqxlqdUyaVCk1cCAvnmbW0aDN7WqtM6Lh2f=s204-p-k-lf-no',
+            shape: 'circularImage' },
+        { id: 46,
+            label: 'Anjishnu Cx',
+            image: 'https://lh3.googleusercontent.com/7FvA_KoiFjirRYB_SgIafrM5gITTatMDQ-7pgYirPQSLMPNmJNjx-diLyitafZ9t_r2bEtOJSJyGMTedk8-EylKRHjZDmCEo=s204-p-k-lf-no',
+            shape: 'circularImage' }
+     ];
+
+    // create connections between people
+    // value corresponds with the amount of contact between two people
+    var edges = nodes.map(function(key){
+        return {
+            from: key.id,
+            to:0,
+            title: "ok"
+        };
+    });
+
+    var nodesObj = Object.assign(nodes);
+
+    // create a network
+    var container = document.getElementById('thank-you');
+    var data = {
+      nodes: nodes,
+      edges: edges
+    };
+    var options = {
+        height: '100%',
+        width: '100%',
+       interaction:{
+        zoomView: false
+       },
+      nodes: {
+        borderWidth:3,
+        size:24,
+        color: {
+          border: '#3273dc',
+          background: '#fff'
+        },
+        font:{
+            color:'#fff'
+        },
+            shadow:true
+      },
+      edges: {
+        chosen: false,
+        color: '#3273dc',
+        dashes: true,
+        length: 400,
+        arrows: {
+                    to:     {enabled: true, scaleFactor:1, type:'arrow'},
+                    middle: {enabled: false, scaleFactor:1, type:'arrow'},
+                    from:   {enabled: true, scaleFactor:1, type:'arrow'}
+                },
+      }
+    };
+    network = new vis.Network(container, data, options);
+      
+       network.on("afterDrawing", function (ctx1) {
+
+  
+        nodesObj = nodesObj.map(function(obj,key){
+            // console.log(obj);
+            if(!obj)
+            {
+                return;
+            }
+            nodepos = network.getPositions([obj.id]);
+            //console.log(nodepos);
+           
+            if(!nodepos[[obj.id]])
+            {
+                return;
+            }
+            let node = Object.create({
+                id : obj.id,
+				ox : nodepos[[obj.id]].x,
+				oy : nodepos[[obj.id]].y,
+				x : nodepos[[obj.id]].x,
+				y : nodepos[[obj.id]].y,
+				radius : randomBetween(1,5),
+				speed : randomBetween(0.02,0.05),
+				reached : true,
+				color : "rgba("+Math.floor(randomBetween(0,255))+","+Math.floor(randomBetween(0,255))+","+Math.floor(randomBetween(0,255))+",1)",
+        
+                particlesPerExplosion : 20,
+                particlesMinSpeed     : 3,
+                particlesMaxSpeed     : 6,
+                particlesMinSize      : 1,
+                particlesMaxSize      : 3,
+                particles             : [],
+                draw : function(){
+                    this.x = this.ox + randomBetween(-50,50)
+                    this.y = this.oy + randomBetween(-50,50)
+                    this.drawexplosion();
+                },
+                generateExplosion : function () {
+
+                    for (let i = 0; i < this.particlesPerExplosion; i++) {
+                    this.particles.push(
+                        new ExplosionParticle(this)
+                    );
+                    }
+
+                },
+                drawexplosion : function() {
+
+                            
+                                        const particles = this.particles;
+
+                                        if (particles.length === 0) {
+                                            // console.log("ecp");
+                                            this.generateExplosion();
+                                            return;
+                                        }
+
+                                        const particlesAfterRemoval = particles.slice();
+                                        for (let ii = 0; ii < particles.length; ii++) {
+
+                                            const particle = particles[ii];
+
+                                            // Check particle size
+                                            // If 0, remove
+                                            if (particle.size <= 0) {
+                                                particlesAfterRemoval.splice(ii, 1);
+                                                continue;
+                                            }
+
+                                            ctx.beginPath();
+                                            ctx.arc(particle.x, particle.y, particle.size, Math.PI * 2, 0, false);
+                                            ctx.closePath();
+                                            ctx.fillStyle = particle.color;
+                                            ctx.fill();
+
+                                            // Update
+                                            particle.x += particle.xv;
+                                            particle.y += particle.yv;
+                                            particle.size -= .1;
+                                        }
+
+                                        this.particles = particlesAfterRemoval;
+
+                        }
+            });
+            if(!node.particles.length)
+                node.generateExplosion();
+
+            return node
+       });
+
+       if(initial)
+       {
+        initial = false;
+            renderExplosion();
+        }
+    });
+
+    function renderExplosion(){
+           
+            var ox = WIDTH/2;
+            var oy = HEIGHT/2;
+            ctx.save();
+            ctx.translate(ox,oy);
+            // ctx.fillStyle = "rgba(0,0,0,0.5)";
+            ctx.clearRect(-ox,-oy,WIDTH,HEIGHT);
+            
+            
+            ctx.fillStyle = "#fff";
+            for(var i = 0; i < nodesObj.length; i++)
+            {
+                if(!nodesObj[i]) continue;
+            
+                ctx.fillStyle = nodesObj[i].color;
+                ctx.beginPath();
+
+                
+                nodesObj[i].draw();
+            }
+
+                ctx.stroke();
+                ctx.fill(); 
+                ctx.restore();
+                //console.log(nodesObj)   
+
+        requestAnimationFrame(renderExplosion);
+
+    };
+}
+
+
+  draw();
+  </script>
+</body>
+</html>

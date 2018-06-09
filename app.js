@@ -108,6 +108,10 @@ router.post("/tailwindo",function(req,res){
   res.send(tailwindo($input)) // gets converted code
 });
 
+router.get("/thank-you",function(req,res){
+   res.render("thankyou");
+});
+
 router.post("/contact",function(req,res){
   console.log(JSON.stringify(req.body));
   
