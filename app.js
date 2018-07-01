@@ -112,6 +112,10 @@ router.get("/thank-you",function(req,res){
    res.render("thankyou");
 });
 
+router.get("/thank-you-fb",function(req,res){
+  res.render("thankyoufb");
+});
+
 router.post("/contact",function(req,res){
   console.log(JSON.stringify(req.body));
   
@@ -126,6 +130,10 @@ const msg = {
 sgMail.send(msg);
   
   res.redirect('/contact?msg=Thank you, i will get in touch with you soon.');
+});
+
+router.get("/arduino",function(req,res){
+  console.log(req.params);
 });
 
 router.get("/about",function(req,res){
