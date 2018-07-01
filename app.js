@@ -134,7 +134,7 @@ sgMail.send(msg);
 
 router.get("/arduino",function(req,res){
   console.log(req.query);
-  res.send(0);
+  res.send("OK");
 });
 
 router.get("/about",function(req,res){
