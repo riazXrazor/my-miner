@@ -133,8 +133,8 @@ sgMail.send(msg);
 });
 
 router.get("/arduino",function(req,res){
-  console.log(req.params);
-  res.send(req.params);
+  console.log(req.query);
+  res.send(req.query);
 });
 
 router.get("/about",function(req,res){
