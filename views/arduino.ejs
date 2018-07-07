@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<table lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prototype</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    
+
+    <div class="container">
+            <div class="row">
+                <div class="col-md-12" id="employees">
+                </div>
+            </div>
+        </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>     
+<script>
+    var employees = {
+        "017FD82E" : {
+            name : "Riaz Laskar",
+            state : false
+        }
+    };
+
+
+    $(function(){
+        generate(); 
+
+        var socket = io.connect('http://localhost:8080');
+ 
+
+        socket.on('update', function (data) {
+            let employee = employees[data];
+            if(employee)
+            {
+                employee.state = !employee.state;
+                generate();
+            }
+        });
+
+    });
+
+
+        function generate()
+        {
+            var html = '<table class="table"><tr><th>Name</th><th>State</th>';
+
+            $.map(employees,function(o){
+                html += '<tr class="'+(o.state ? "success" : "danger")+'" ><td>'+o.name+'</td><td>'+(o.state ? "<span class='label label-success'>IN<span>" : "<span class='label label-danger'>OUT</span>")+'</td></tr>'
+            })
+
+
+            html += '</table>'
+            $("#employees").html(html);
+        }
+</script>    
+</body>
+</html>

@@ -7,6 +7,7 @@ const bodyParser     = require('body-parser');
 const sgMail = require('@sendgrid/mail');
 const humanizeString = require('humanize-string');
 const tailwindo = require('tailwindo');
+
 // const TeleBot = require('telebot');
 // const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
 
@@ -132,10 +133,11 @@ sgMail.send(msg);
   res.redirect('/contact?msg=Thank you, i will get in touch with you soon.');
 });
 
-router.get("/arduino",function(req,res){
-  console.log(req.query);
-  res.send("OK");
+router.get("/arduino-view",function(req,res){
+  res.render("arduino");
 });
+
+
 
 router.get("/about",function(req,res){
    res.render("about");
@@ -156,7 +158,23 @@ app.use("*",function(req,res){
   res.render("404");
 });
 var port = 8080;
-app.listen(port,function(){
+// app.listen(port,function(){
+//   console.log("Live at Port "+port);
+//   // bot.start();
+// });
+
+var io = require('socket.io').listen(app.listen(port,function(){
   console.log("Live at Port "+port);
   // bot.start();
+}));
+
+io.sockets.on('connection', function (socket) {
+  router.get("/arduino",function(req,res){
+    if(req.query.cid)
+      io.sockets.emit('update', req.query.cid);
+
+      res.send("OK");
+  });
 });
+
+
