@@ -173,7 +173,7 @@ io.sockets.on('connection', function (socket) {
     if(req.query.cid)
       io.sockets.emit('update', req.query.cid);
 
-      res.send("OK");
+      res.send(JSON.stringify(req.query));
   });
 });
 
