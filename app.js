@@ -109,13 +109,10 @@ router.post("/tailwindo",function(req,res){
   res.send(tailwindo($input)) // gets converted code
 });
 
-router.get("/thank-you",function(req,res){
-   res.render("thankyou");
+router.get("/puchki",function(req,res){
+   res.render("hbd");
 });
 
-router.get("/thank-you-fb",function(req,res){
-  res.render("thankyoufb");
-});
 
 router.post("/contact",function(req,res){
   console.log(JSON.stringify(req.body));
