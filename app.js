@@ -109,7 +109,7 @@ router.post("/tailwindo",function(req,res){
   res.send(tailwindo($input)) // gets converted code
 });
 
-router.get("/puchki",function(req,res){
+router.get("/binod",function(req,res){
    res.render("hbd");
 });
 
