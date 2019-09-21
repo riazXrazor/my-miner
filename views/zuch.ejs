@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Happy Birthday Zuchamo</title>
     <style>
     /* Kaushan+Script, oregano, sail */
 @import url("https://fonts.googleapis.com/css?family=Kaushan+Script");
@@ -432,6 +432,19 @@ div#sea {
   right: 25px;
 }
 
+#quote{
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto auto;
+    color: #fff;
+    font-size: 32px;
+}
+
 @media (min-width: 1000px) {
   .icons {
     left: 30px;
@@ -466,6 +479,8 @@ div#sea {
   }
 }
 
+
+
     </style>
 </head>
 <body>
@@ -481,6 +496,9 @@ div#sea {
       <!--<img src="https://dl.dropbox.com/s/zoftkmdxyyqr8ce/belair.png" alt="jumping-people" id="car" />-->
       
       <div id="merrywrap" class="merrywrap">
+         <div id="quote" style="display:none">
+                My dear friend, you and I may be miles away, but my happy birthday wishes are with you today!
+         </div>
         <div class="giftbox">
           <div class="cover">
             <div></div>
@@ -856,6 +874,7 @@ function reveal() {
   }
 
   document.querySelector('#video').style.display = "block";
+  document.querySelector('#quote').style.display = "block";
 }
       </script>
 </body>
