@@ -148,6 +148,10 @@ router.get("/celeberate",function(req,res){
    res.render("celeberate");
 });
 
+router.get("/zuchamo",function(req,res){
+  res.render("zuch");
+});
+
 
 app.use("/",router);
 
