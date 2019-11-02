@@ -152,6 +152,10 @@ router.get("/zuchamo",function(req,res){
   res.render("zuch");
 });
 
+router.get("/google035b4f68dd40b02d.html",function(req,res){
+  res.send("google-site-verification: google035b4f68dd40b02d.html")
+});
+
 
 app.use("/",router);
 
