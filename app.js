@@ -152,7 +152,8 @@ router.get("/about", function (req, res) {
 //266348
 
 router.get("/folding@home", function (req, res) {
-  fetch("https://stats.foldingathome.org/api/team/266348", {
+  const n = new Date();
+  fetch("https://stats.foldingathome.org/api/team/266348?n=" + n, {
     headers: {
       "Content-Type": "application/json",
     },
