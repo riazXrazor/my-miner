@@ -1,0 +1,114 @@
+<% include partials/headerinner %>
+
+<!-- banner text -->
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="innerbanner-text text-center">
+            <p>Folding@home of team riazxrazor@covit</p>
+            <!-- banner text -->
+        </div>
+    </div>
+</div>
+</section>
+<!-- header section -->
+<!-- description text section 
+
+ wus: 0,
+  donors: [],
+  rank: null,
+  total_teams: 253956,
+  active_50: 0,
+  logo: 'https://riazxrazor.in/images/me.jpg',
+  wus_cert: 'https://apps.foldingathome.org/awards?team=266348&type=wus',
+  fast_team_url: 'https://apps.foldingathome.org/teamstats/team266348.html',
+  credit_cert: 'https://apps.foldingathome.org/awards?team=266348&type=score',
+  last: null,
+  name: 'riazxrazor@covit',
+  url: 'https://riazxrazor.in/',
+  credit: 0,
+  team: 266348,
+  path: 'team/266348'
+-->
+<section id="inner-description" class="section inner-description">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-radius: 16px;">
+                        <div class="well profile col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <figure>
+                                    <img src="<%= logo %>" alt="" class="img-circle">
+                                </figure>
+                                <h5 style="text-align:center;"><strong id="user-name"><%= name %></strong></h5>
+                                <p style="text-align:center;">Total Score: <strong id="user-name"><%= credit %></strong>
+                                </p>
+                                <p style="text-align:center;font-size: smaller;">
+                                    <strong>Team ID: </strong>
+                                    <span class="tags" id="user-status"><%= team  %></span>
+                                </p>
+                                <p style="text-align:center;font-size: smaller;">
+                                    <strong>Date of last work unit: </strong>
+                                    <span class="tags" id="user-status"><%= last  %></span>
+                                </p>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
+                                <div class="col-lg-6 left" style="text-align:center;overflow-wrap: break-word;">
+                                    <h4>
+                                        <p style="text-align: center;">
+                                            <strong id="user-globe-rank">
+                                                <%= rank || 0 %>
+                                            </strong>
+                                        </p>
+                                    </h4>
+                                    <p><small class="label label-success">Our Ranking</small></p>
+                                    <!--<button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>-->
+                                </div>
+                                <div class=" col-lg-6 left" style="text-align:center;overflow-wrap: break-word;">
+                                    <h4>
+                                        <p style="text-align: center;"><strong id="user-college-rank"><%= active_50 %>
+                                            </strong></p>
+                                    </h4>
+                                    <p> <small class="label label-warning">Active CPUs within 50 days</small></p>
+                                    <!-- <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h1 style="margin: 0;text-align: center;">Top Members</h1>
+                <table class="table table-striped table-condensed">
+                    <thead>
+                        <tr>
+
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Credit</th>
+                            <th>WUS</th>
+                            <th>Team</th>
+                            <th>ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% donors.forEach(function(user){ %>
+                        <tr>
+
+                            <td><%= user.name %></td>
+                            <td><%= user.rank %></td>
+                            <td><%= user.credit %></td>
+                            <td><%= user.wus %></td>
+                            <td><%= user.team %></td>
+                            <td><%= user.id %></td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- description text section -->
+<% include partials/footer %>

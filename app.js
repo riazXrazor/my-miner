@@ -1,13 +1,13 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
-const axios = require('axios');
+const axios = require("axios");
 const app = express();
 const router = express.Router();
-const bodyParser     = require('body-parser');
-const sgMail = require('@sendgrid/mail');
-const humanizeString = require('humanize-string');
-const tailwindo = require('tailwindo');
-
+const bodyParser = require("body-parser");
+const sgMail = require("@sendgrid/mail");
+const humanizeString = require("humanize-string");
+const tailwindo = require("tailwindo");
+const fetch = require("node-fetch");
 // const TeleBot = require('telebot');
 // const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
 
@@ -73,93 +73,115 @@ bot.on(['/hello'], (msg) => {
     return bot.sendMessage(msg.from.id, `Hello, ${ msg.from.first_name }!`);
 });*/
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-}));
-app.use(express.static(__dirname + '/assets'))
-router.use(function (req,res,next) {
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(
+  bodyParser.urlencoded({
+    // to support URL-encoded bodies
+    extended: true,
+  })
+);
+app.use(express.static(__dirname + "/assets"));
+router.use(function (req, res, next) {
   console.log("/" + req.method);
   next();
 });
 
-router.get("/",function(req,res){
+router.get("/", function (req, res) {
   res.render("index");
 });
 
-router.get("/mining",function(req,res){
+router.get("/mining", function (req, res) {
   res.render("mining");
 });
 
-router.get("/help-me",function(req,res){
+router.get("/help-me", function (req, res) {
   res.render("mining");
 });
 
-router.get("/contact",function(req,res){
-  res.render("contact",req.query);
+router.get("/contact", function (req, res) {
+  res.render("contact", req.query);
 });
 
-router.get("/bootstrap-to-tailwind",function(req,res){
+router.get("/bootstrap-to-tailwind", function (req, res) {
   res.render("bs2tw");
 });
-router.post("/tailwindo",function(req,res){
+router.post("/tailwindo", function (req, res) {
   $input = req.body.html; //BootstrapCSS code
-  res.send(tailwindo($input)) // gets converted code
+  res.send(tailwindo($input)); // gets converted code
 });
 
-router.get("/binod",function(req,res){
-   res.render("hbd");
+router.get("/binod", function (req, res) {
+  res.render("hbd");
 });
 
-
-router.post("/contact",function(req,res){
+router.post("/contact", function (req, res) {
   console.log(JSON.stringify(req.body));
-  
-let txt = '<p><strong>Name:</strong> '+req.body.name+'</p><p><strong>Email:</strong> '+req.body.email+'</p><p><strong>Phone:</strong> '+req.body.phone+'</p><p><strong>Query:</strong> '+req.body.message+'</p>';
-const msg = {
-  to: 'riazcool77@gmail.com',
-  from: req.body.email,
-  subject: 'riazxrazor.in : website query',
-  text: req.body.message,
-  html: txt,
-};
-sgMail.send(msg);
-  
-  res.redirect('/contact?msg=Thank you, i will get in touch with you soon.');
+
+  let txt =
+    "<p><strong>Name:</strong> " +
+    req.body.name +
+    "</p><p><strong>Email:</strong> " +
+    req.body.email +
+    "</p><p><strong>Phone:</strong> " +
+    req.body.phone +
+    "</p><p><strong>Query:</strong> " +
+    req.body.message +
+    "</p>";
+  const msg = {
+    to: "riazcool77@gmail.com",
+    from: req.body.email,
+    subject: "riazxrazor.in : website query",
+    text: req.body.message,
+    html: txt,
+  };
+  sgMail.send(msg);
+
+  res.redirect("/contact?msg=Thank you, i will get in touch with you soon.");
 });
 
-router.get("/arduino-view",function(req,res){
+router.get("/arduino-view", function (req, res) {
   res.render("arduino");
 });
 
+router.get("/about", function (req, res) {
+  res.render("about");
+});
+//
+//266348
 
-
-router.get("/about",function(req,res){
-   res.render("about");
+router.get("/folding@home", function (req, res) {
+  fetch("https://stats.foldingathome.org/api/team/266348", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((r) => r.json())
+    .then((r) => {
+      res.render("folding", r);
+    });
 });
 
-router.get("/test",function(req,res){
-   res.render("test");
+router.get("/test", function (req, res) {
+  res.render("test");
 });
 
-router.get("/celeberate",function(req,res){
-   res.render("celeberate");
+router.get("/celeberate", function (req, res) {
+  res.render("celeberate");
 });
 
-router.get("/zuchamo",function(req,res){
+router.get("/zuchamo", function (req, res) {
   res.render("zuch");
 });
 
-router.get("/google035b4f68dd40b02d.html",function(req,res){
-  res.send("google-site-verification: google035b4f68dd40b02d.html")
+router.get("/google035b4f68dd40b02d.html", function (req, res) {
+  res.send("google-site-verification: google035b4f68dd40b02d.html");
 });
 
+app.use("/", router);
 
-app.use("/",router);
-
-app.use("*",function(req,res){
+app.use("*", function (req, res) {
   res.render("404");
 });
 var port = 8080;
@@ -168,18 +190,17 @@ var port = 8080;
 //   // bot.start();
 // });
 
-var io = require('socket.io').listen(app.listen(port,function(){
-  console.log("Live at Port "+port);
-  // bot.start();
-}));
+var io = require("socket.io").listen(
+  app.listen(port, function () {
+    console.log("Live at Port " + port);
+    // bot.start();
+  })
+);
 
-io.sockets.on('connection', function (socket) {
-  router.get("/arduino",function(req,res){
-    if(req.query.cid)
-      io.sockets.emit('update', req.query.cid);
+io.sockets.on("connection", function (socket) {
+  router.get("/arduino", function (req, res) {
+    if (req.query.cid) io.sockets.emit("update", req.query.cid);
 
-      res.send(JSON.stringify(req.query));
+    res.send(JSON.stringify(req.query));
   });
 });
-
-
