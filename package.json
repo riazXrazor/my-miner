@@ -12,6 +12,7 @@
     "ejs": "^2.5.7",
     "express": "latest",
     "humanize-string": "^1.0.1",
+    "md5": "^2.2.1",
     "node-fetch": "^2.6.0",
     "socket.io": "^2.1.1",
     "tailwindo": "^1.0.5",

@@ -146,9 +146,53 @@ AUDIO.VISUALIZER = (function () {
     };
 
     
+    /**
+     * @description
+     * Set source buffer and connect processor and analyser.
+     *
+     * @return {Object}
+     */
+    Visualizer.prototype.setBufferSourceNode = function () {
+        this.sourceNode = this.ctx.createBufferSource();
+        
+        this.gainNode = this.ctx.createGain();
+        this.gainNode.connect(this.ctx.destination)
+        this.gainNode.gain.value = 0;
+        
+        this.sourceNode.loop = this.loop;
+        // Create a gain node.
+        
+        
+        
+        this.sourceNode.connect(this.analyser);
+        this.sourceNode.connect(this.ctx.destination);
+        this.sourceNode.connect(this.gainNode);
+    
+        
+        // Reduce the volume.
+        
 
+        this.sourceNode.onended = function () {
+            clearInterval(INTERVAL);
+            this.sourceNode.disconnect();
+            this.resetTimer();
+            this.isPlaying = false;
+            this.sourceNode = this.ctx.createBufferSource();
+        }.bind(this);
 
+        return this;
+    };
 
+    /**
+     * @description
+     * Set current media source url.
+     *
+     * @return {Object}
+     */
+    Visualizer.prototype.setMediaSource = function () {
+        this.audioSrc = this.audio.getAttribute('src');
+        return this;
+    };
 
     /**
      * @description
@@ -167,13 +211,38 @@ AUDIO.VISUALIZER = (function () {
         return this;
     };
 
-    
+    /**
+     * @description
+     * Bind click events.
+     *
+     * @return {Object}
+     */
+    Visualizer.prototype.bindEvents = function () {
+        var _this = this;
+
+        document.addEventListener('click', function (e) {
+            if (e.target === _this.canvas) {
+                e.stopPropagation();
+                if (!_this.isPlaying) {
+                    return (_this.ctx.state === 'suspended') ? _this.playSound() : _this.loadSound();
+                } else {
+                    return _this.pauseSound();
+                }
+            }
+        });
+
+        if (_this.autoplay) {
+            _this.loadSound();
+        }
+
+        return this;
+    };
 
     /**
      * @description
      * Load sound file.
      */
-    Visualizer.prototype.loadImage = function () {
+    Visualizer.prototype.loadSound = function () {
         var req = new XMLHttpRequest();
         req.open('GET', this.audioSrc, true);
         req.responseType = 'arraybuffer';
@@ -196,7 +265,25 @@ AUDIO.VISUALIZER = (function () {
         req.send();
     };
 
-   
+    /**
+     * @description
+     * Play sound from the given buffer.
+     *
+     * @param  {Object} buffer
+     */
+    Visualizer.prototype.playSound = function (buffer) {
+        this.isPlaying = true;
+
+        if (this.ctx.state === 'suspended') {
+            return this.ctx.resume();
+        }
+
+        this.sourceNode.buffer = buffer;
+        this.sourceNode.start(0);
+        this.resetTimer();
+        this.startTimer();
+        this.renderFrame();
+    };
 
     /**
      * @description
@@ -379,8 +466,10 @@ AUDIO.VISUALIZER = (function () {
                 .setContext()
                 .setAnalyser()
                 .setFrequencyData()
+                .setBufferSourceNode()
+                .setMediaSource()
                 .setCanvasStyles()
-                .loadImage();
+                .bindEvents();
 
             return visualizer;
         };
@@ -411,7 +500,7 @@ AUDIO.VISUALIZER = (function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
-console.log("ok")
+
     AUDIO.VISUALIZER.getInstance({
         autoplay: true,
         loop: true,
@@ -421,9 +510,9 @@ console.log("ok")
         barWidth: 2,
         barHeight: 2,
         barSpacing: 2,
-        barColor: '#969595',
+        barColor: 'rgba(255,255,255,1)',
         shadowBlur: 20,
-        shadowColor: '#4a4a4a',
+        shadowColor: 'rgba(255,255,255,0.3)',
         font: ['12px', 'Helvetica'],
         radius : 75
     });

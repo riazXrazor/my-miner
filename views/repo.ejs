@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+        .vz-wrapper {
+            /*position: relative;*/
+            height: <%- height %>px;
+            width: <%- width %>px;
+            cursor: pointer;
+        }
+
+        .vz-wrapper.-canvas {
+            height: initial;
+            width: initial;
+            box-shadow: none;
+        }
+    
+        
+    </style>
+</head>
+<body>
+    <div class="vz-wrapper">
+        <audio id="myAudio" src="" data-author="Software Engineer" data-title="Riaz Laskar" data-image="https://www.gravatar.com/avatar/<%- avatar %>?s=200"></audio>
+        <div class="vz-wrapper -canvas">
+            <canvas id="myCanvas" width="<%- width %>" height="<%- height %>"></canvas>
+        </div>
+    </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+        <script src="/js/visualizer.js"></script>
+</body>
+</html>

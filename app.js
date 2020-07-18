@@ -5,7 +5,7 @@ const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
 const sgMail = require("@sendgrid/mail");
-const humanizeString = require("humanize-string");
+var md5 = require('md5');
 const tailwindo = require("tailwindo");
 const fetch = require("node-fetch");
 // const TeleBot = require('telebot');
@@ -90,6 +90,18 @@ router.use(function (req, res, next) {
 
 router.get("/", function (req, res) {
   res.render("index");
+});
+
+router.get("/api/cool-avatar", function (req, res) {
+  var avatar =  md5(req.query.email)
+  var height =  req.query.height || 200
+  var width =  req.query.width || 200
+  console.log(avatar)
+  res.render("repo",{
+    avatar: avatar,
+    height: height,
+    width: width,
+  });
 });
 
 router.get("/mining", function (req, res) {
