@@ -150,7 +150,7 @@ html, body {
         Bar Color: <input type="color" v-model="barColor"  /> {{ barColor }}
     </div>
     <div class="form">
-        <button class="genbtn" @click="generateGif">Generate GIF</button>
+        <button class="genbtn" :disabled="loading" @click="generateGif">{{ loading ? 'Generating...' : 'Generate GIF' }}</button>
     </div>
     </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -169,7 +169,8 @@ html, body {
                 barHeight: 2,
                 barSpacing: 2,
                 barWidth: 2,
-                viz: null
+                viz: null,
+                loading: false,
             },
             mounted: function() {
                 gif = new GIF({
@@ -196,13 +197,15 @@ html, body {
             },
             methods:{
                 generateGif: function(){
+                    this.loading = true;
                     gif.abort();
                     console.log('generateGif...')
                    this.viz.getgif = true;
 
                    setTimeout(() => {
                     this.viz.getgif = false;
-                    gif.on('finished', function(blob) {
+                    gif.on('finished', (blob) => {
+                        this.loading = false;
                         window.open(URL.createObjectURL(blob,{type: "image/gif"}));
                     });
                     
