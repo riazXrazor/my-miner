@@ -92,15 +92,11 @@ router.get("/", function (req, res) {
   res.render("index");
 });
 
-router.get("/api/cool-avatar", function (req, res) {
-  var avatar =  md5(req.query.email)
-  var height =  req.query.height || 200
-  var width =  req.query.width || 200
-  console.log(avatar)
+router.get("/cool-avatar-gif", function (req, res) {
+
+  var avatar =  md5(req.query.email || 'riazcool77@gmail.com')
   res.render("repo",{
     avatar: avatar,
-    height: height,
-    width: width,
   });
 });
 

@@ -49,7 +49,7 @@ var Simple1DNoise = function() {
         }
     };
 };
-
+var i = 0;
 AUDIO.VISUALIZER = (function () {
     'use strict';
 
@@ -92,6 +92,7 @@ AUDIO.VISUALIZER = (function () {
         this.shadowColor = cfg.shadowColor || '#ffffff';
         this.font = cfg.font || ['12px', 'Helvetica'];
         this.gradient = null;
+        this.getgif = false;
         
         //extension
         
@@ -157,11 +158,11 @@ AUDIO.VISUALIZER = (function () {
      * @return {Object}
      */
     Visualizer.prototype.setCanvasStyles = function () {
-        this.gradient = this.canvasCtx.createLinearGradient(0, 0, 0, 300);
-        this.gradient.addColorStop(1, this.barColor);
-        this.canvasCtx.fillStyle = this.gradient;
-        this.canvasCtx.shadowBlur = this.shadowBlur;
-        this.canvasCtx.shadowColor = this.shadowColor;
+        // this.gradient = this.canvasCtx.createLinearGradient(0, 0, 0, 300);
+        // this.gradient.addColorStop(1, this.barColor);
+        this.canvasCtx.fillStyle = this.barColor;
+        // this.canvasCtx.shadowBlur = this.shadowBlur;
+        // this.canvasCtx.shadowColor = this.shadowColor;
         this.canvasCtx.font = this.font.join(' ');
         this.canvasCtx.textAlign = 'center';
         return this;
@@ -179,6 +180,7 @@ AUDIO.VISUALIZER = (function () {
         req.responseType = 'arraybuffer';
         this.canvasCtx.fillText('Loading...', this.canvas.width / 2 + 10, this.canvas.height / 2);
         var img = new Image();
+        img.crossOrigin = "Anonymous";
         req.onload = function () {
             var _this = this;
             img.onload = function(){
@@ -248,10 +250,11 @@ AUDIO.VISUALIZER = (function () {
      * @description
      * Render frame on canvas.
      */
+
     Visualizer.prototype.renderFrame = function () {
         requestAnimationFrame(this.renderFrame.bind(this));
         this.analyser.getByteFrequencyData(this.frequencyData);
-
+       
         this.canvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.renderTime();
@@ -301,6 +304,7 @@ AUDIO.VISUALIZER = (function () {
      * Render lounge style type.
      */
     Visualizer.prototype.renderLounge = function () {
+        this.canvasCtx.fillStyle = this.barColor;
         var cx = this.canvas.width / 2;
         var cy = this.canvas.height / 2;
         var radius = this.radius;
@@ -347,6 +351,10 @@ AUDIO.VISUALIZER = (function () {
         this.canvasCtx.clip();
         this.canvasCtx.closePath();
         this.canvasCtx.restore();
+        if(this.getgif){
+             gif.addFrame(this.canvas, {copy: true, delay: 10});
+        }
+    
     };
 
     /**
@@ -409,22 +417,30 @@ AUDIO.VISUALIZER = (function () {
     };
 })();
 
-document.addEventListener('DOMContentLoaded', function () {
-    'use strict';
-console.log("ok")
-    AUDIO.VISUALIZER.getInstance({
-        autoplay: true,
-        loop: true,
-        audio: 'myAudio',
-        canvas: 'myCanvas',
-        style: 'lounge',
-        barWidth: 2,
-        barHeight: 2,
-        barSpacing: 2,
-        barColor: '#969595',
-        shadowBlur: 20,
-        shadowColor: '#4a4a4a',
-        font: ['12px', 'Helvetica'],
-        radius : 75
-    });
-}, false);
+// document.addEventListener('DOMContentLoaded', function () {
+//     'use strict';
+//     AUDIO.VISUALIZER.getInstance({
+//         autoplay: true,
+//         loop: true,
+//         audio: 'myAudio',
+//         canvas: 'myCanvas',
+//         style: 'lounge',
+//         barWidth: 2,
+//         barHeight: 2,
+//         barSpacing: 2,
+//         barColor: '#000',
+//         shadowBlur: 20,
+//         shadowColor: '#fff',
+//         font: ['12px', 'Helvetica'],
+//         radius : 75
+//     });
+// }, false);
+
+// document.addEventListener('click',function() {
+    // gif.on('finished', function(blob) {
+    //     console.log(blob);
+    //     window.open(URL.createObjectURL(blob,{type: "image/gif"}));
+    //   });
+      
+    //   gif.render();
+// })

@@ -6,11 +6,76 @@
     <title>Document</title>
     <style>
     
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+.text {
+  fill: none;
+  stroke-width: 1;
+  stroke-linejoin: round;
+  stroke-dasharray: 70 330;
+  stroke-dashoffset: 0;
+  -webkit-animation: stroke 6s infinite linear;
+  animation: stroke 6s infinite linear;
+}
+.text:nth-child(5n + 1) {
+  stroke: #F2385A;
+  -webkit-animation-delay: -1.2s;
+  animation-delay: -1.2s;
+}
+.text:nth-child(5n + 2) {
+  stroke: #F5A503;
+  -webkit-animation-delay: -2.4s;
+  animation-delay: -2.4s;
+}
+.text:nth-child(5n + 3) {
+  stroke: #E9F1DF;
+  -webkit-animation-delay: -3.6s;
+  animation-delay: -3.6s;
+}
+.text:nth-child(5n + 4) {
+  stroke: #56D9CD;
+  -webkit-animation-delay: -4.8s;
+  animation-delay: -4.8s;
+}
+.text:nth-child(5n + 5) {
+  stroke: #3AA1BF;
+  -webkit-animation-delay: -6s;
+  animation-delay: -6s;
+}
+
+@-webkit-keyframes stroke {
+  100% {
+    stroke-dashoffset: -400;
+  }
+}
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: -400;
+  }
+}
+
+html, body {
+  height: 100%;
+  background: #111;
+  color: #fff;
+  /* overflow: hidden; */
+}
+
+.heading {
+  /* position: absolute;
+  width: 100%;
+  bottom:0;
+  left:0; */
+  background-size: .2em 100%;
+  font: 2em/1 Open Sans, Impact;
+  text-transform: uppercase;
+  margin: 0;
+}
         .vz-wrapper {
             /*position: relative;*/
-            height: <%- height %>px;
-            width: <%- width %>px;
+            height: 400px;
+            width: 400px;
             cursor: pointer;
+            margin: 0 auto;
         }
 
         .vz-wrapper.-canvas {
@@ -18,18 +83,151 @@
             width: initial;
             box-shadow: none;
         }
+
+        h1{
+            text-align: center;
+        }
     
+        .form{
+         text-align: center;
+        }
         
+        .genbtn{
+            padding: 5px 10px;
+            border: 0;
+            background-color: rgb(68, 68, 126);
+            color: #fff;
+            margin: 20px
+        }
+
+        .inputtext{
+            color: #111;
+            padding: 5px;
+
+        }
+
     </style>
 </head>
 <body>
+    <div id="root">
+        <div class="heading">
+            <!-- TEXT-->
+              <svg class="text" viewBox="0 0 400 50">
+                <!-- Symbol-->
+                <symbol id="s-text">
+                  <text text-anchor="middle" x="50%" y="70%" dy=".35em">Avatar gif</text>
+                </symbol>
+                <!-- Duplicate symbols-->
+                <use class="text" xlink:href="#s-text"></use>
+                <use class="text" xlink:href="#s-text"></use>
+                <use class="text" xlink:href="#s-text"></use>
+                <use class="text" xlink:href="#s-text"></use>
+                <use class="text" xlink:href="#s-text"></use>
+              </svg>
+        </div>
     <div class="vz-wrapper">
         <audio id="myAudio" src="" data-author="Software Engineer" data-title="Riaz Laskar" data-image="https://www.gravatar.com/avatar/<%- avatar %>?s=200"></audio>
         <div class="vz-wrapper -canvas">
-            <canvas id="myCanvas" width="<%- width %>" height="<%- height %>"></canvas>
+            <canvas id="myCanvas" width="400" height="400"></canvas>
         </div>
     </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+    <div class="form">
+        <span style="color:#F2385A">Note: profile image is fetched from your <a href="https://en.gravatar.com/">Gavatar</a> by email </span>
+        <form>
+            Your Email Address: <input name="email" class="inputtext" /> <button class="genbtn" type="submit">Go</button>
+        </form>
+    </div>
+    <div class="form">
+        Bar Height: <input v-model="barHeight" type="range" step="1" min="0" max="10" /> {{barHeight}}
+    </div>
+    <div class="form">
+        Bar Width: <input v-model="barWidth" type="range" step="1" min="0" max="10" /> {{barWidth}}
+    </div>
+    <div class="form">
+        Bar Spacing: <input v-model="barSpacing" type="range" step="1" min="0" max="10" /> {{barSpacing}}
+    </div>
+    <div class="form">
+        Bar Color: <input type="color" v-model="barColor"  /> {{ barColor }}
+    </div>
+    <div class="form">
+        <button class="genbtn" @click="generateGif">Generate GIF</button>
+    </div>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="/js/gif.js"></script>
+        <script src="/js/gif.worker.js"></script>
+        <script>
+         var gif 
+        </script>
         <script src="/js/visualizer.js"></script>
+        <script>
+            new Vue({
+            el: '#root',
+            data: { 
+                appTitle: 'Cool Avatar',
+                barColor: "#fff",
+                barHeight: 2,
+                barSpacing: 2,
+                barWidth: 2,
+                viz: null
+            },
+            mounted: function() {
+                gif = new GIF({
+                    workers: 2,
+                    quality: 10,
+                    width: 400,
+                    height: 400,
+                    workerScript: '/js/gif.worker.js',
+                    transparent: '#000'
+                });
+
+                this.viz = AUDIO.VISUALIZER.getInstance({
+                    autoplay: true,
+                    loop: true,
+                    audio: 'myAudio',
+                    canvas: 'myCanvas',
+                    style: 'lounge',
+                    barWidth: this.barWidth,
+                    barHeight: this.barHeight,
+                    barSpacing: this.barHeight,
+                    barColor: this.barColor,
+                    radius : 75
+                });
+            },
+            methods:{
+                generateGif: function(){
+                    gif.abort();
+                    console.log('generateGif...')
+                   this.viz.getgif = true;
+
+                   setTimeout(() => {
+                    this.viz.getgif = false;
+                    gif.on('finished', function(blob) {
+                        window.open(URL.createObjectURL(blob,{type: "image/gif"}));
+                    });
+                    
+                    gif.render();
+                   }, 3);
+                }
+            },
+            watch:{
+                barHeight: function (val, oldVal) {
+                    this.viz.barHeight = val;
+                },
+                barWidth: function (val, oldVal) {
+                    this.viz.barWidth = val;
+                },
+                barSpacing: function (val, oldVal) {
+                    this.viz.barSpacing = val;
+                },
+                barColor: function (val, oldVal) {
+                    this.viz.barColor = val;
+                },
+                
+            }
+
+        })
+        </script>
+       
 </body>
 </html>
