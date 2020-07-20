@@ -94,10 +94,13 @@ router.get("/", function (req, res) {
 
 router.get("/cool-avatar-gif", function (req, res) {
 
-  var avatar =  md5(req.query.email || 'riazcool77@gmail.com')
-  res.render("repo",{
-    avatar: avatar,
-  });
+  res.set('location', 'https://avatar-gif.netlify.app');
+  res.status(301).send()
+  
+  // var avatar =  md5(req.query.email || 'riazcool77@gmail.com')
+  // res.render("repo",{
+  //   avatar: avatar,
+  // });
 });
 
 router.get("/mining", function (req, res) {
