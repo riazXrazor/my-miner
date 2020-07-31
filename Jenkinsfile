@@ -20,12 +20,12 @@ pipeline {
                 sh './jenkins/scripts/kill.sh' 
             }
         }
-        post { 
+    }
+    post { 
                 success {  
                     dir('.') {
                             sh 'ls -al'
                         }
                 }
-        }
     }
 }
