@@ -24,9 +24,9 @@ pipeline {
     post { 
                 success {  
                     dir('.') {
-                            sh 'npm run stop app.js'
-                            sh 'npm run delete app.js'
-                            sh 'pm2 start app.js'
+                            sh 'npm run stop'
+                            sh 'npm run delete'
+                            sh 'npm start'
                         }
                 }
     }
