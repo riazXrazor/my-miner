@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'npm install -g pm2'
                 sh 'npm install'
             }
         }
@@ -24,7 +25,10 @@ pipeline {
     post { 
                 success {  
                     dir('.') {
+                            sh 'pm2 stop all'
+                            sh 'pm2 delete all'
                             sh 'pm2 start app.js'
+                            sh 'pm2 list'
                         }
                 }
     }
