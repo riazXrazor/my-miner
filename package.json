@@ -2,7 +2,9 @@
   "name": "riaz-laskar-miner",
   "version": "0.0.1",
   "scripts": {
-    "start": "node app.js",
+    "start": "pm2 start app.js",
+    "stop": "pm2 stop app.js",
+    "delete": "pm2 delete app.js",
     "dev": "nodemon app.js"
   },
   "dependencies": {
@@ -13,6 +15,7 @@
     "express": "latest",
     "humanize-string": "^1.0.1",
     "node-fetch": "^2.6.0",
+    "pm2": "^4.4.0",
     "socket.io": "^2.1.1",
     "tailwindo": "^1.0.5"
   },
