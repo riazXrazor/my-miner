@@ -117,7 +117,7 @@ app.use("/", router);
 app.use("*", function (req, res) {
   res.render("404");
 });
-var port = 8080;
+var port = 3000;
 // app.listen(port,function(){
 //   console.log("Live at Port "+port);
 //   // bot.start();
