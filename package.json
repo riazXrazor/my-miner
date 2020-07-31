@@ -2,9 +2,9 @@
   "name": "riaz-laskar-miner",
   "version": "0.0.1",
   "scripts": {
-    "start": "pm2 start app.js",
-    "stop": "pm2 stop app.js",
-    "delete": "pm2 delete app.js",
+    "start": "node app.js",
+    "stop": "pm2 stop all",
+    "delete": "pm2 delete all",
     "dev": "nodemon app.js"
   },
   "dependencies": {
