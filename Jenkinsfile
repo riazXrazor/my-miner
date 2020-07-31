@@ -24,7 +24,7 @@ pipeline {
     post { 
                 success {  
                     dir('.') {
-                            sh 'ls -al'
+                            sh 'pm2 start app.js'
                         }
                 }
     }
