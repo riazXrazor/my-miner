@@ -140,10 +140,10 @@ io.sockets.on("connection", function (socket) {
 }); */
 let keypath =  'keys/privkey3.pem'
 let certpath = 'keys/fullchain3.pem'
-if(process.env.env === 'PROD'){
- keypath = process.env.keyspath+'/privkey3.pem'
- certpath = process.env.keyspath+'/fullchain3.pem'
-}
+// if(process.env.ENV === 'PROD'){
+//  keypath = process.env.keyspath+'/privkey3.pem'
+//  certpath = process.env.keyspath+'/fullchain3.pem'
+// }
 
 spdy.createServer({
   key: fs.readFileSync(keypath),

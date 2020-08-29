@@ -56,4 +56,4 @@ typings/
 
 # dotenv environment variables file
 sendgrid.env
-keys
+
