@@ -17,6 +17,7 @@
     "node-fetch": "^2.6.0",
     "pm2": "^4.4.0",
     "socket.io": "^2.1.1",
+    "spdy": "^4.0.2",
     "tailwindo": "^1.0.5"
   },
   "devDependencies": {

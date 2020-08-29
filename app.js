@@ -5,7 +5,8 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const sgMail = require("@sendgrid/mail");
 const tailwindo = require("tailwindo");
-
+const spdy = require('spdy');
+const fs = require('fs');
 
 
 app.set("view engine", "ejs");
@@ -117,13 +118,13 @@ app.use("/", router);
 app.use("*", function (req, res) {
   res.render("404");
 });
-var port = 3000;
+var PORT = 3000;
 // app.listen(port,function(){
 //   console.log("Live at Port "+port);
 //   // bot.start();
 // });
 
-var io = require("socket.io").listen(
+/* var io = require("socket.io").listen(
   app.listen(port, function () {
     console.log("Live at Port http://localhost:" + port);
     // bot.start();
@@ -136,4 +137,17 @@ io.sockets.on("connection", function (socket) {
 
     res.send(JSON.stringify(req.query));
   });
+}); */
+let keypath =  'keys/privkey3.pem'
+let certpath = 'keys/fullchain3.pem'
+if(process.env.env === 'PROD'){
+ keypath = process.env.keyspath+'/privkey3.pem'
+ certpath = process.env.keyspath+'/fullchain3.pem'
+}
+
+spdy.createServer({
+  key: fs.readFileSync(keypath),
+  cert: fs.readFileSync(certpath)
+}, app).listen(PORT, 'localhost', () => {
+  console.log(`HTTP/2 Express running at https://localhost:${PORT}`)
 });
