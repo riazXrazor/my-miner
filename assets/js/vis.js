@@ -8,17 +8,17 @@
  * @date    2017-10-12
  *
  * @license
- * Copyright (C) 2011-2017 Almende B.V, http://almende.com
+ * Copyright (C) 2011-2017 Almende B.V, https://almende.com
  *
  * Vis.js is dual licensed under both
  *
  * * The Apache 2.0 License
- *   http://www.apache.org/licenses/LICENSE-2.0
+ *   https://www.apache.org/licenses/LICENSE-2.0
  *
  * and
  *
  * * The MIT License
- *   http://opensource.org/licenses/MIT
+ *   https://opensource.org/licenses/MIT
  *
  * Vis.js may be distributed under either license.
  */
@@ -254,7 +254,7 @@ exports.isDate = function (object) {
 
 /**
  * Create a semi UUID
- * source: http://stackoverflow.com/a/105074/1262753
+ * source: https://stackoverflow.com/a/105074/1262753
  * @return {string} uuid
  */
 exports.randomUUID = function () {
@@ -656,7 +656,7 @@ exports.convert = function (object, type) {
 
 // parse ASP.Net Date pattern,
 // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
-// code from http://momentjs.com/
+// code from https://momentjs.com/
 var ASPDateRegex = /^\/?Date\((\-?\d+)/i;
 
 /**
@@ -924,7 +924,7 @@ exports.preventDefault = function (event) {
  * @return {Element} target element
  */
 exports.getTarget = function (event) {
-  // code from http://www.quirksmode.org/js/events_properties.html
+  // code from https://www.quirksmode.org/js/events_properties.html
   if (!event) {
     event = window.event;
   }
@@ -1055,7 +1055,7 @@ exports.option.asElement = function (value, defaultValue) {
 };
 
 /**
- * http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+ * https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
  *
  * @param {string} hex
  * @returns {{r: *, g: *, b: *}} | 255 range
@@ -1188,7 +1188,7 @@ exports.parseColor = function (color) {
 };
 
 /**
- * http://www.javascripter.net/faq/rgb2hsv.htm
+ * https://www.javascripter.net/faq/rgb2hsv.htm
  *
  * @param {number} red
  * @param {number} green
@@ -1627,7 +1627,7 @@ exports.binarySearchValue = function (orderedItems, target, field, sidePreferenc
 };
 
 /*
- * Easing Functions - inspired from http://gizma.com/easing/
+ * Easing Functions - inspired from https://gizma.com/easing/
  * only considering the t value for the range [0, 1] => [0, 1]
  * https://gist.github.com/gre/1650294
  */
@@ -3366,12 +3366,12 @@ exports.getSVGElement = function (elementType, JSONcontainer, svgContainer) {
       JSONcontainer[elementType].redundant.shift();
     } else {
       // create a new element and add it to the SVG
-      element = document.createElementNS('http://www.w3.org/2000/svg', elementType);
+      element = document.createElementNS('https://www.w3.org/2000/svg', elementType);
       svgContainer.appendChild(element);
     }
   } else {
     // create a new element and add it to the SVG, also create a new object in the svgElements to keep track of it.
-    element = document.createElementNS('http://www.w3.org/2000/svg', elementType);
+    element = document.createElementNS('https://www.w3.org/2000/svg', elementType);
     JSONcontainer[elementType] = { used: [], redundant: [] };
     svgContainer.appendChild(element);
   }
@@ -3857,7 +3857,7 @@ var Validator = function () {
 
     /**
      *  Compute the edit distance between the two given strings
-     * http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#JavaScript
+     * https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#JavaScript
      *
      * Copyright (c) 2011 Andrei Mackenzie
      *
@@ -4810,7 +4810,7 @@ Point3d.avg = function (a, b) {
 
 /**
  * Calculate the cross product of the two provided points, returns axb
- * Documentation: http://en.wikipedia.org/wiki/Cross_product
+ * Documentation: https://en.wikipedia.org/wiki/Cross_product
  * @param {Point3d} a
  * @param {Point3d} b
  * @return {Point3d} cross product axb
@@ -7215,7 +7215,7 @@ CustomTime.prototype.redraw = function () {
   var locale = this.options.locales[this.options.locale];
   if (!locale) {
     if (!this.warned) {
-      console.log('WARNING: options.locales[\'' + this.options.locale + '\'] not found. See http://visjs.org/docs/timeline/#Localization');
+      console.log('WARNING: options.locales[\'' + this.options.locale + '\'] not found. See https://visjs.org/docs/timeline/#Localization');
       this.warned = true;
     }
     locale = this.options.locales['en']; // fall back on english when not available
@@ -9099,7 +9099,7 @@ Range.prototype._onDragEnd = function (event) {
 
 /**
  * Event handler for mouse wheel event, used to zoom
- * Code from http://adomas.org/javascript-mouse-wheel/
+ * Code from https://adomas.org/javascript-mouse-wheel/
  * @param {Event} event
  * @private
  */
@@ -11647,7 +11647,7 @@ CurrentTime.prototype.redraw = function () {
     var locale = this.options.locales[this.options.locale];
     if (!locale) {
       if (!this.warned) {
-        console.log('WARNING: options.locales[\'' + this.options.locale + '\'] not found. See http://visjs.org/docs/timeline/#Localization');
+        console.log('WARNING: options.locales[\'' + this.options.locale + '\'] not found. See https://visjs.org/docs/timeline/#Localization');
         this.warned = true;
       }
       locale = this.options.locales['en']; // fall back on english when not available
@@ -15286,7 +15286,7 @@ var BezierEdgeBase = function (_EdgeBase) {
     /**
      * Calculate the distance between a point (x3,y3) and a line segment from
      * (x1,y1) to (x2,y2).
-     * http://stackoverflow.com/questions/849211/shortest-distancae-between-a-point-and-a-line-segment
+     * https://stackoverflow.com/questions/849211/shortest-distancae-between-a-point-and-a-line-segment
      * @param {number} x1 from x
      * @param {number} y1 from y
      * @param {number} x2 to x
@@ -16239,7 +16239,7 @@ function StepNumber(start, end, step, prettyStep) {
 /**
  * Check for input values, to prevent disasters from happening
  *
- * Source: http://stackoverflow.com/a/1830844
+ * Source: https://stackoverflow.com/a/1830844
  *
  * @param {string} n
  * @returns {boolean}
@@ -16447,7 +16447,7 @@ var DEFAULTS = undefined;
 /**
  * Check if given hash is empty.
  *
- * Source: http://stackoverflow.com/a/679937
+ * Source: https://stackoverflow.com/a/679937
  *
  * @param {object} obj
  * @returns {boolean}
@@ -16463,7 +16463,7 @@ function isEmpty(obj) {
 /**
  * Make first letter of parameter upper case.
  *
- * Source: http://stackoverflow.com/a/1026087
+ * Source: https://stackoverflow.com/a/1026087
  *
  * @param {string} str
  * @returns {string}
@@ -16834,7 +16834,7 @@ var Point3d = __webpack_require__(34);
  * of the camera arm.
  *
  * Documentation:
- *   http://en.wikipedia.org/wiki/3D_projection
+ *   https://en.wikipedia.org/wiki/3D_projection
  * @class Camera
  */
 function Camera() {
@@ -21548,7 +21548,7 @@ LineGraph.prototype._create = function () {
   this.dom.frame = frame;
 
   // create svg element for graph drawing.
-  this.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  this.svg = document.createElementNS('https://www.w3.org/2000/svg', 'svg');
   this.svg.style.position = 'relative';
   this.svg.style.height = ('' + this.options.graphHeight).replace('px', '') + 'px';
   this.svg.style.display = 'block';
@@ -22640,7 +22640,7 @@ DataAxis.prototype._create = function () {
   this.dom.lineContainer.style.position = 'relative';
 
   // create svg element for graph drawing.
-  this.svg = document.createElementNS('http://www.w3.org/2000/svg', "svg");
+  this.svg = document.createElementNS('https://www.w3.org/2000/svg', "svg");
   this.svg.style.position = "absolute";
   this.svg.style.top = '0px';
   this.svg.style.height = '100%';
@@ -23436,7 +23436,7 @@ GraphGroup.prototype.update = function (group) {
  */
 GraphGroup.prototype.getLegend = function (iconWidth, iconHeight, framework, x, y) {
   if (framework == undefined || framework == null) {
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', "svg");
+    var svg = document.createElementNS('https://www.w3.org/2000/svg', "svg");
     framework = { svg: svg, svgElements: {}, options: this.options, groups: [this] };
   }
   if (x == undefined || x == null) {
@@ -24152,7 +24152,7 @@ Legend.prototype._create = function () {
   this.dom.textArea.style.position = "relative";
   this.dom.textArea.style.top = "0px";
 
-  this.svg = document.createElementNS('http://www.w3.org/2000/svg', "svg");
+  this.svg = document.createElementNS('https://www.w3.org/2000/svg', "svg");
   this.svg.style.position = 'absolute';
   this.svg.style.top = 0 + 'px';
   this.svg.style.width = this.options.iconSize + 5 + 'px';
@@ -24588,9 +24588,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'd
  * Parse a text source containing data in DOT language into a JSON object.
  * The object contains two lists: one with nodes and one with edges.
  *
- * DOT language reference: http://www.graphviz.org/doc/info/lang.html
+ * DOT language reference: https://www.graphviz.org/doc/info/lang.html
  *
- * DOT language attributes: http://graphviz.org/content/attrs
+ * DOT language attributes: https://graphviz.org/content/attrs
  *
  * @param {string} data     Text containing a graph in DOT-notation
  * @return {Object} graph   An object containing two parameters:
@@ -24606,7 +24606,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'd
  * > the escape sequences "\n", "\l" and "\r" divide the label into lines, centered, 
  * > left-justified, and right-justified, respectively.
  *
- * Source: http://www.graphviz.org/content/attrs#kescString
+ * Source: https://www.graphviz.org/content/attrs#kescString
  *
  * > As another aid for readability, dot allows double-quoted strings to span multiple physical
  * > lines using the standard C convention of a backslash immediately preceding a newline
@@ -27146,7 +27146,7 @@ var EdgeBase = function () {
      * Calculate the distance between a point (x3,y3) and a line segment from (x1,y1) to (x2,y2).
      * (x3,y3) is the point.
      *
-     * http://stackoverflow.com/questions/849211/shortest-distancae-between-a-point-and-a-line-segment
+     * https://stackoverflow.com/questions/849211/shortest-distancae-between-a-point-and-a-line-segment
      *
      * @param {number} x1
      * @param {number} y1
@@ -30343,7 +30343,7 @@ function getParseRegexForToken (token, config) {
     return regexes[token](config._strict, config._locale);
 }
 
-// Code from http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
+// Code from https://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
 function unescapeFormat(s) {
     return regexEscape(s.replace('\\', '').replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4) {
         return p1 || p2 || p3 || p4;
@@ -31545,7 +31545,7 @@ function defineLocale (name, config) {
                     'use moment.updateLocale(localeName, config) to change ' +
                     'an existing locale. moment.defineLocale(localeName, ' +
                     'config) should only be used for creating a new locale ' +
-                    'See http://momentjs.com/guides/#/warnings/define-locale/ for more info.');
+                    'See https://momentjs.com/guides/#/warnings/define-locale/ for more info.');
             parentConfig = locales[name]._config;
         } else if (config.parentLocale != null) {
             if (locales[config.parentLocale] != null) {
@@ -32032,7 +32032,7 @@ hooks.createFromInputFallback = deprecate(
     'value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), ' +
     'which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are ' +
     'discouraged and will be removed in an upcoming major release. Please refer to ' +
-    'http://momentjs.com/guides/#/warnings/js-date/ for more info.',
+    'https://momentjs.com/guides/#/warnings/js-date/ for more info.',
     function (config) {
         config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
     }
@@ -32296,7 +32296,7 @@ function createLocal (input, format, locale, strict) {
 }
 
 var prototypeMin = deprecate(
-    'moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/',
+    'moment().min is deprecated, use moment.max instead. https://momentjs.com/guides/#/warnings/min-max/',
     function () {
         var other = createLocal.apply(null, arguments);
         if (this.isValid() && other.isValid()) {
@@ -32308,7 +32308,7 @@ var prototypeMin = deprecate(
 );
 
 var prototypeMax = deprecate(
-    'moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/',
+    'moment().max is deprecated, use moment.min instead. https://momentjs.com/guides/#/warnings/min-max/',
     function () {
         var other = createLocal.apply(null, arguments);
         if (this.isValid() && other.isValid()) {
@@ -32662,7 +32662,7 @@ function isUtc () {
 // ASP.NET json date format regex
 var aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
 
-// from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+// from https://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
 // somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
 // and further modified to allow for strings containing both week and day
 var isoRegex = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;
@@ -32779,7 +32779,7 @@ function createAdder(direction, name) {
         //invert the arguments, but complain about it
         if (period !== null && !isNaN(+period)) {
             deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period). ' +
-            'See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.');
+            'See https://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.');
             tmp = val; val = period; period = tmp;
         }
 
@@ -33586,8 +33586,8 @@ proto.zoneName = getZoneName;
 proto.dates  = deprecate('dates accessor is deprecated. Use date instead.', getSetDayOfMonth);
 proto.months = deprecate('months accessor is deprecated. Use month instead', getSetMonth);
 proto.years  = deprecate('years accessor is deprecated. Use year instead', getSetYear);
-proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/', getSetZone);
-proto.isDSTShifted = deprecate('isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information', isDaylightSavingTimeShifted);
+proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. https://momentjs.com/guides/#/warnings/zone/', getSetZone);
+proto.isDSTShifted = deprecate('isDSTShifted is deprecated. See https://momentjs.com/guides/#/warnings/dst-shifted/ for more information', isDaylightSavingTimeShifted);
 
 function createUnix (input) {
     return createLocal(input * 1000);
@@ -34234,7 +34234,7 @@ var _rng;
 var globalVar = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : null;
 
 if (globalVar && globalVar.crypto && crypto.getRandomValues) {
-  // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
+  // WHATWG crypto-based RNG - https://wiki.whatwg.org/wiki/Crypto
   // Moderately fast, high quality
   var _rnds8 = new Uint8Array(16);
   _rng = function whatwgRNG() {
@@ -34262,7 +34262,7 @@ if (!_rng) {
 //     uuid.js
 //
 //     Copyright (c) 2010-2012 Robert Kieffer
-//     MIT License - http://opensource.org/licenses/mit-license.php
+//     MIT License - https://opensource.org/licenses/mit-license.php
 
 // Unique ID creation requires a high quality random # generator.  We feature
 // detect to determine the best RNG source, normalizing to a function that
@@ -34309,7 +34309,7 @@ function unparse(buf, offset) {
 // **`v1()` - Generate time-based UUID**
 //
 // Inspired by https://github.com/LiosK/UUID.js
-// and http://docs.python.org/library/uuid.html
+// and https://docs.python.org/library/uuid.html
 
 // random #'s we need to init node and clockseq
 var _seedBytes = _rng();
@@ -34755,7 +34755,7 @@ Graph3d.prototype._convert3Dto2D = function (point3d) {
 
 /**
  * Convert a 3D location its translation seen from the camera
- * Source: http://en.wikipedia.org/wiki/3D_projection
+ * Source: https://en.wikipedia.org/wiki/3D_projection
  *
  * @param   {Point3d} point3d     A 3D point with parameters x, y, z
  * @returns {Point3d} translation A 3D point with parameters x, y, z This is
@@ -36542,7 +36542,7 @@ Graph3d.prototype._onTouchEnd = function (event) {
 
 /**
  * Event handler for mouse wheel event, used to zoom the graph
- * Code from http://adomas.org/javascript-mouse-wheel/
+ * Code from https://adomas.org/javascript-mouse-wheel/
  * @param {Event}  event   The event
  */
 Graph3d.prototype._onWheel = function (event) {
@@ -37911,7 +37911,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.7 - 2016-04-22
- * http://hammerjs.github.io/
+ * https://hammerjs.github.io/
  *
  * Copyright (c) 2016 Jorik Tangelder;
  * Licensed under the MIT license */
@@ -43080,7 +43080,7 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
    * @param {number} r   radius, half the length of the sides of the triangle
    */
   CanvasRenderingContext2D.prototype.triangle = function (x, y, r) {
-    // http://en.wikipedia.org/wiki/Equilateral_triangle
+    // https://en.wikipedia.org/wiki/Equilateral_triangle
     this.beginPath();
 
     // the change in radius and the offset is here to center the shape
@@ -43107,7 +43107,7 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
    * @param {number} r radius
    */
   CanvasRenderingContext2D.prototype.triangleDown = function (x, y, r) {
-    // http://en.wikipedia.org/wiki/Equilateral_triangle
+    // https://en.wikipedia.org/wiki/Equilateral_triangle
     this.beginPath();
 
     // the change in radius and the offset is here to center the shape
@@ -43133,7 +43133,7 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
    * @param {number} r   radius, half the length of the sides of the triangle
    */
   CanvasRenderingContext2D.prototype.star = function (x, y, r) {
-    // http://www.html5canvastutorials.com/labs/html5-canvas-star-spinner/
+    // https://www.html5canvastutorials.com/labs/html5-canvas-star-spinner/
     this.beginPath();
 
     // the change in radius and the offset is here to center the shape
@@ -43155,7 +43155,7 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
    * @param {number} r   radius, half the length of the sides of the triangle
    */
   CanvasRenderingContext2D.prototype.diamond = function (x, y, r) {
-    // http://www.html5canvastutorials.com/labs/html5-canvas-star-spinner/
+    // https://www.html5canvastutorials.com/labs/html5-canvas-star-spinner/
     this.beginPath();
 
     this.lineTo(x, y + r);
@@ -43167,7 +43167,7 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
   };
 
   /**
-   * http://stackoverflow.com/questions/1255512/how-to-draw-a-rounded-rectangle-on-html-canvas
+   * https://stackoverflow.com/questions/1255512/how-to-draw-a-rounded-rectangle-on-html-canvas
    *
    * @param {number} x
    * @param {number} y
@@ -43197,7 +43197,7 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
   };
 
   /**
-   * http://stackoverflow.com/questions/2172798/how-to-draw-an-oval-in-html5-canvas
+   * https://stackoverflow.com/questions/2172798/how-to-draw-an-oval-in-html5-canvas
    *
    * Postfix '_vis' added to discern it from standard method ellipse().
    *
@@ -43230,7 +43230,7 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
   };
 
   /**
-   * http://stackoverflow.com/questions/2172798/how-to-draw-an-oval-in-html5-canvas
+   * https://stackoverflow.com/questions/2172798/how-to-draw-an-oval-in-html5-canvas
    *
    * @param {number} x
    * @param {number} y
@@ -43278,7 +43278,7 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
 
   /**
    * Sets up the dashedLine functionality for drawing
-   * Original code came from http://stackoverflow.com/questions/4576724/dotted-stroke-in-canvas
+   * Original code came from https://stackoverflow.com/questions/4576724/dotted-stroke-in-canvas
    * @author David Jordan
    * @date 2012-08-08
    *
@@ -43598,7 +43598,7 @@ var CachedImage = function () {
      * The rationale behind this is to reduce artefacts due to interpolation
      * at differing zoom levels.
      *
-     * Source: http://stackoverflow.com/q/18761404/1223531
+     * Source: https://stackoverflow.com/q/18761404/1223531
      *
      * This methods takes the resizing out of the drawing loop, in order to
      * reduce performance overhead.
@@ -48054,7 +48054,7 @@ var CubicBezierEdgeBase = function (_BezierEdgeBase) {
   /**
    * Calculate the distance between a point (x3,y3) and a line segment from
    * (x1,y1) to (x2,y2).
-   * http://stackoverflow.com/questions/849211/shortest-distancae-between-a-point-and-a-line-segment
+   * https://stackoverflow.com/questions/849211/shortest-distancae-between-a-point-and-a-line-segment
    * https://en.wikipedia.org/wiki/B%C3%A9zier_curve
    * @param {number} x1 from x
    * @param {number} y1 from y
@@ -54129,7 +54129,7 @@ var InteractionHandler = function () {
 
     /**
      * Event handler for mouse wheel event, used to zoom the timeline
-     * See http://adomas.org/javascript-mouse-wheel/
+     * See https://adomas.org/javascript-mouse-wheel/
      *     https://github.com/EightMedia/hammer.js/issues/256
      * @param {MouseEvent}  event
      * @private

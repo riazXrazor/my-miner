@@ -126,7 +126,7 @@ var PORT = 3000;
 
 /* var io = require("socket.io").listen(
   app.listen(port, function () {
-    console.log("Live at Port http://localhost:" + port);
+    console.log("Live at Port https://localhost:" + port);
     // bot.start();
   })
 );
