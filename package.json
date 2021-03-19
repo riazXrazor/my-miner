@@ -8,19 +8,21 @@
     "dev": "nodemon app.js"
   },
   "dependencies": {
-    "@sendgrid/mail": "^6.1.4",
-    "body-parser": "^1.18.2",
+    "@sendgrid/mail": "^6.5.5",
+    "body-parser": "^1.19.0",
     "dotenv": "^4.0.0",
-    "ejs": "^2.5.7",
-    "express": "latest",
-    "humanize-string": "^1.0.1",
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "humanize-string": "^1.0.2",
+    "morgan": "^1.10.0",
+    "neo-async": "^2.6.2",
     "node-fetch": "^2.6.0",
-    "pm2": "^4.4.0",
-    "socket.io": "^2.1.1",
+    "pm2": "^4.4.1",
+    "socket.io": "^2.3.0",
     "spdy": "^4.0.2",
     "tailwindo": "^1.0.5"
   },
   "devDependencies": {
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.19.4"
   }
 }
